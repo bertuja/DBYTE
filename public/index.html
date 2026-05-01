@@ -1248,6 +1248,30 @@ section { position: relative; }
 }
 .footer-col a:hover::after { transform: scaleX(1); }
 
+.social-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
+}
+.social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.social-icon img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+.social-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .footer-bottom {
   padding-top: 32px;
   display: flex;
@@ -1658,7 +1682,7 @@ section { position: relative; }
         </div>
         <div>
           <span class="lbl">Teléfono</span>
-          <span class="val">+54 11 4000 0000</span>
+          <span class="val">+54 9 11 31040042</span>
         </div>
         <div>
           <span class="lbl">Email</span>
@@ -1670,7 +1694,7 @@ section { position: relative; }
     <aside class="contact-aside reveal d2">
       <iframe
         class="contact-map"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-58.495%2C-34.625%2C-58.470%2C-34.610&amp;layer=mapnik&amp;marker=-34.6175%2C-58.4825"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.481987989563!2d-58.48354112346819!3d-34.61747872330265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb2d7c8f8f8d%3A0x1234567890abcdef!2sGavilan%201207%2C%20C1407%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1234567890"
         loading="lazy"
         title="Ubicación DBYTE"></iframe>
       <div class="contact-aside-card">
@@ -1714,9 +1738,23 @@ section { position: relative; }
       <h4>Contacto</h4>
       <ul>
         <li><a href="mailto:info@d-byte.com.ar" data-cursor>info@d-byte.com.ar</a></li>
-        <li><a href="tel:+541140000000" data-cursor>+54 11 4000 0000</a></li>
+        <li><a href="tel:+5491131040042" data-cursor>+54 9 11 31040042</a></li>
         <li><a href="https://d-byte.com.ar" data-cursor>d-byte.com.ar</a></li>
       </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Redes Sociales</h4>
+      <div class="social-links">
+        <a href="https://instagram.com/dbytesrl" class="social-icon" title="Instagram" data-cursor>
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.linkedin.com/company/dbytesrl/" class="social-icon" title="LinkedIn" data-cursor>
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" alt="LinkedIn" />
+        </a>
+        <a href="https://twitter.com/dbytesrl" class="social-icon" title="X (Twitter)" data-cursor>
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/x.svg" alt="X" />
+        </a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
