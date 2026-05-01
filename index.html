@@ -1,0 +1,2130 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DBYTE — Infraestructura IT, Ciberseguridad, Continuidad</title>
+<meta name="description" content="DBYTE — Soluciones integrales de hardware y software para PyMEs y empresas de Argentina y Latinoamérica." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  /* Brand */
+  --green: #00CC99;
+  --blue:  #35A8E0;
+  --grad: linear-gradient(135deg, #00CC99 0%, #35A8E0 100%);
+
+  /* Surfaces */
+  --bg:        #000000;
+  --bg-alt:    #0a1628;
+  --surface:   #111820;
+  --border:    #1e2a3a;
+  --hairline:  rgba(255,255,255,0.06);
+
+  /* Text */
+  --fg:        #FFFFFF;
+  --fg-mute:   #706F6F;
+  --fg-dim:    rgba(255,255,255,0.5);
+
+  /* Type */
+  --display:   'Montserrat', system-ui, sans-serif;
+  --body:      'Roboto', system-ui, sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: none; border: none; background: none; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  transition: width 0.2s var(--ease), height 0.2s var(--ease);
+}
+.cursor-ring {
+  width: 28px; height: 28px;
+  border: 1px solid var(--green);
+  transition: width 0.25s var(--ease), height 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.cursor-ring.hover {
+  width: 56px; height: 56px;
+  border-color: var(--green);
+}
+.cursor-dot.hover {
+  width: 0; height: 0;
+}
+@media (max-width: 900px) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease), padding 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 204, 153, 0.15);
+  padding: 16px 48px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  transition: transform 0.4s var(--ease);
+}
+.nav-logo:hover { transform: scale(1.02); }
+.nav-logo .iso {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(0,204,153,0.35));
+  transition: filter 0.4s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);
+}
+.nav.scrolled .nav-logo .iso {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 0 16px rgba(0,204,153,0.4));
+}
+.nav-logo .wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo .wordmark-name { font-weight: 800; font-size: 14px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85); }
+.nav-logo .wordmark-tag {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--fg-mute);
+  margin-top: 4px;
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 8px 0;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-cta {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #000;
+  padding: 12px 22px;
+  border-radius: 6px;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.nav-cta:hover {
+  box-shadow: 0 0 30px rgba(0,204,153,0.5);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .nav { padding: 16px 24px; }
+  .nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section { position: relative; }
+.section-pad {
+  padding: 160px 48px;
+}
+@media (max-width: 900px) {
+  .section-pad { padding: 96px 24px; }
+}
+
+.section-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 80px;
+}
+.section-meta .num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--green);
+}
+.section-meta .slash {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
+
+.section-num-deco {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 14px;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.2em;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  padding: 140px 48px 120px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+.hero-left { display: flex; flex-direction: column; justify-content: center; }
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 48px 80px; gap: 48px; }
+}
+@media (max-width: 900px) {
+  .hero { padding: 110px 24px 64px; }
+}
+.hero-eyebrow {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.2s forwards;
+}
+.hero-eyebrow .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(0,204,153,0.8);
+}
+
+.hero-line {
+  width: 0;
+  height: 2px;
+  background: var(--grad);
+  margin-bottom: 28px;
+  animation: lineGrow 0.8s var(--ease) 0.4s forwards;
+}
+@keyframes lineGrow {
+  to { width: 64px; }
+}
+
+.hero-title {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(3.2rem, 6.5vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  margin-bottom: 32px;
+  max-width: 14ch;
+}
+.hero-rotator {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+.hero-rotator-track {
+  display: inline-block;
+  position: relative;
+}
+.hero-rotator-word {
+  display: inline-block;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  white-space: nowrap;
+}
+.hero-rotator-word.entering {
+  animation: clipReveal 0.7s var(--ease) forwards;
+}
+.hero-rotator-word.exiting {
+  animation: clipHide 0.6s var(--ease) forwards;
+}
+@keyframes clipReveal {
+  0% { clip-path: inset(100% 0 0 0); transform: translateY(20%); }
+  100% { clip-path: inset(0 0 0 0); transform: translateY(0); }
+}
+@keyframes clipHide {
+  0% { clip-path: inset(0 0 0 0); transform: translateY(0); }
+  100% { clip-path: inset(0 0 100% 0); transform: translateY(-20%); }
+}
+
+.hero-sub {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--fg-mute);
+  max-width: 52ch;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.6s forwards;
+}
+
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.8s forwards;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #000;
+  padding: 18px 32px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease), gap 0.3s var(--ease);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 40px rgba(0,204,153,0.5);
+  gap: 18px;
+}
+.btn-primary .arrow { transition: transform 0.3s var(--ease); }
+.btn-primary:hover .arrow { transform: translateX(2px); }
+
+.btn-outline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  padding: 16px 30px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), gap 0.3s var(--ease);
+}
+.btn-outline:hover {
+  background: var(--green);
+  color: #000;
+  gap: 18px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   TERMINAL — AI AGENT SCANNING
+   ============================================================ */
+.terminal {
+  width: 100%;
+  max-width: 620px;
+  background: linear-gradient(180deg, #0c1218 0%, #060a0e 100%);
+  border: 1px solid rgba(0,204,153,0.18);
+  border-radius: 12px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(0,204,153,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  overflow: hidden;
+  font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.9s var(--ease) 0.6s forwards;
+  position: relative;
+}
+.terminal::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0,204,153,0.4), transparent 40%, transparent 60%, rgba(53,168,224,0.4));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.term-dots { display: flex; gap: 6px; }
+.term-dot { width: 11px; height: 11px; border-radius: 50%; }
+.term-dot.r { background: #ff5f57; }
+.term-dot.y { background: #febc2e; }
+.term-dot.g { background: #28c840; }
+.term-title {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+}
+.term-title .agent-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0,204,153,0.12);
+  border: 1px solid rgba(0,204,153,0.35);
+  color: var(--green);
+  margin-left: 8px;
+  font-size: 10px;
+}
+.term-title .agent-tag .pulse-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  margin-right: 6px;
+  vertical-align: 1px;
+  animation: termPulse 1.4s ease-in-out infinite;
+}
+@keyframes termPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; box-shadow: 0 0 8px var(--green); }
+}
+.term-body {
+  padding: 18px 22px 24px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #cfe7df;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0,204,153,0.06), transparent 50%);
+}
+.term-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, #060a0e);
+  pointer-events: none;
+}
+.term-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.term-line.show { opacity: 1; transform: translateY(0); }
+.term-prompt { color: var(--green); }
+.term-user { color: var(--blue); }
+.term-cmd { color: #fff; }
+.term-info { color: rgba(255,255,255,0.55); }
+.term-ok { color: var(--green); }
+.term-warn { color: #f5b800; }
+.term-danger { color: #ef4444; }
+.term-agent { color: #b8f1dd; font-style: italic; }
+.term-meta { color: rgba(255,255,255,0.35); font-size: 11px; }
+.term-bar-fill {
+  display: inline-block;
+  background: var(--grad);
+  height: 8px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin: 0 8px;
+}
+.term-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--green);
+  vertical-align: -2px;
+  animation: termBlink 1s steps(2) infinite;
+  margin-left: 2px;
+}
+@keyframes termBlink { 50% { opacity: 0; } }
+
+/* floating chips around terminal */
+.term-chip {
+  position: absolute;
+  background: rgba(8,16,22,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,204,153,0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) forwards;
+}
+.term-chip .num {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 18px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.term-chip.tl { top: -16px; left: -24px; animation-delay: 1.1s; }
+.term-chip.br { bottom: -18px; right: -24px; animation-delay: 1.4s; }
+@media (max-width: 600px) {
+  .term-chip { display: none; }
+  .term-body { height: 320px; padding: 14px 16px; }
+}
+
+.hero-corner {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-corner .bar { width: 24px; height: 1px; background: rgba(255,255,255,0.18); }
+
+.hero-corner-right {
+  position: absolute;
+  bottom: 48px;
+  right: 48px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.8;
+}
+.hero-corner-right .label { color: var(--fg-mute); display: block; font-size: 9px; }
+.hero-corner-right .val { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 1200px) {
+  .hero-corner, .hero-corner-right { display: none; }
+}
+@media (max-width: 900px) {
+  .hero { padding: 24px; }
+}
+
+/* ============================================================
+   ABOUT (small editorial pad)
+   ============================================================ */
+.about {
+  padding: 120px 48px;
+  border-top: 1px solid var(--hairline);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-label {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.about-label::before {
+  content: '— ';
+  color: var(--green);
+}
+.about-text {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+.about-text em {
+  font-style: normal;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 80px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 48px;
+}
+.stat-num {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+}
+.stat-label {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+@media (max-width: 900px) {
+  .about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-stats { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services {
+  padding: 160px 48px;
+  border-top: 1px solid var(--hairline);
+  position: relative;
+}
+.services-list {
+  margin-top: 40px;
+}
+.svc-row {
+  display: grid;
+  grid-template-columns: 60px 64px 1fr auto;
+  gap: 32px;
+  align-items: center;
+  padding: 36px 0;
+  border-top: 1px solid var(--hairline);
+  cursor: none;
+  position: relative;
+  transition: padding 0.4s var(--ease);
+}
+.svc-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  background: rgba(0,204,153,0.04);
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.svc-icon svg { width: 26px; height: 26px; }
+.svc-row:hover .svc-icon {
+  border-color: rgba(0,204,153,0.5);
+  background: rgba(0,204,153,0.1);
+  transform: rotate(-4deg) scale(1.05);
+}
+.svc-row.featured .svc-icon {
+  background: var(--grad);
+  border-color: transparent;
+  color: #000;
+}
+.svc-row.featured .svc-num { color: #fff; }
+.svc-row.featured .svc-name {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.svc-row:last-child { border-bottom: 1px solid var(--hairline); }
+
+.svc-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad);
+  opacity: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
+  z-index: -1;
+  height: 1px;
+  top: 0;
+  bottom: auto;
+}
+.svc-row:hover::before {
+  transform: scaleX(1);
+  opacity: 1;
+  height: 1px;
+}
+
+.svc-num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: var(--green);
+}
+.svc-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.svc-row:hover .svc-name {
+  color: #fff;
+  transform: translateX(8px);
+}
+.svc-arrow {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--green);
+  color: var(--green);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.4s var(--ease);
+}
+.svc-row:hover .svc-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.svc-arrow svg { width: 18px; height: 18px; }
+
+.svc-desc {
+  grid-column: 3;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--fg-mute);
+  line-height: 1.6;
+  max-width: 60ch;
+  transition: max-height 0.4s var(--ease), opacity 0.4s var(--ease), margin-top 0.4s var(--ease);
+}
+.svc-row:hover .svc-desc {
+  max-height: 80px;
+  opacity: 1;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .services { padding: 80px 24px; }
+  .svc-row { grid-template-columns: 28px 44px 1fr 28px; gap: 14px; padding: 24px 0; }
+  .svc-icon { width: 40px; height: 40px; border-radius: 8px; }
+  .svc-icon svg { width: 20px; height: 20px; }
+  .svc-arrow { width: 28px; height: 28px; }
+  .svc-arrow svg { width: 12px; height: 12px; }
+  .svc-desc { grid-column: 3; }
+  .svc-row:hover .svc-desc { max-height: 200px; }
+}
+
+/* ============================================================
+   TICKET STRIP
+   ============================================================ */
+.ticket {
+  background: var(--bg-alt);
+  padding: 160px 48px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.ticket-iso-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.04;
+  pointer-events: none;
+}
+.ticket-iso-bg svg {
+  width: 80vh;
+  height: 80vh;
+  max-width: 800px;
+  max-height: 800px;
+}
+.ticket-inner {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ticket-eyebrow {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 32px;
+}
+.ticket-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+  text-wrap: balance;
+}
+.ticket-title .accent {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.btn-ghost {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1.5px solid #fff;
+  color: #fff;
+  padding: 18px 32px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), gap 0.3s var(--ease);
+}
+.btn-ghost:hover { background: #fff; color: #000; gap: 18px; }
+
+@media (max-width: 900px) {
+  .ticket { padding: 96px 24px; }
+}
+
+/* ============================================================
+   ALLIANCES (white)
+   ============================================================ */
+.alliances {
+  background: #fff;
+  color: #0a0a0a;
+  padding: 96px 0;
+  overflow: hidden;
+}
+.alliances-head {
+  text-align: center;
+  margin-bottom: 64px;
+  padding: 0 48px;
+}
+.alliances-eyebrow {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.alliances-eyebrow::before,
+.alliances-eyebrow::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: #0a0a0a;
+}
+.marquee {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: 80px;
+  padding-right: 80px;
+  animation: marquee 40s linear infinite;
+  flex-shrink: 0;
+  align-items: center;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.brand-label {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+  white-space: nowrap;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease), color 0.3s var(--ease);
+}
+.brand-label:hover { opacity: 1; color: #00a87f; }
+.brand-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  margin: 0 32px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  background: linear-gradient(135deg, #009e7a 0%, #00cc99 50%, #35a8e0 100%);
+  color: #fff;
+  padding: 140px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+.contact-eyebrow {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0.85;
+}
+.contact-title {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 56px;
+}
+.contact-form { display: flex; flex-direction: column; gap: 8px; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.field {
+  position: relative;
+  padding: 24px 0 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  transition: border-color 0.3s var(--ease);
+}
+.field:focus-within { border-color: #fff; }
+.field label {
+  position: absolute;
+  top: 24px; left: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  pointer-events: none;
+  transition: top 0.3s var(--ease), font-size 0.3s var(--ease);
+}
+.field input, .field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 18px;
+  padding: 4px 0;
+  font-family: var(--body);
+}
+.field textarea { resize: vertical; min-height: 24px; }
+.field.filled label,
+.field:focus-within label {
+  top: 4px;
+  font-size: 9px;
+}
+.contact-submit {
+  margin-top: 32px;
+  align-self: flex-start;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: #000;
+  color: #fff;
+  padding: 18px 36px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  transition: gap 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.contact-submit:hover { gap: 18px; transform: translateY(-2px); }
+
+.contact-meta {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  font-family: var(--body);
+  font-size: 14px;
+}
+.contact-meta div { display: flex; flex-direction: column; gap: 4px; }
+.contact-meta .lbl {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.contact-meta .val { font-weight: 500; font-size: 15px; }
+
+.contact-aside { position: relative; }
+.contact-map {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+  border: 0;
+  filter: grayscale(0.2) contrast(1.05);
+}
+.contact-aside-card {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.contact-aside-card .where {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+.contact-aside-card .sub {
+  font-family: var(--body);
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+.contact-aside-card .pulse {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+  flex-shrink: 0;
+}
+.contact-aside-card .pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .contact { padding: 80px 24px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .contact-map { min-height: 320px; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #000;
+  border-top: 1px solid var(--green);
+  padding: 80px 48px 32px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 64px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--hairline);
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  margin-bottom: 24px;
+}
+.footer-brand .iso {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(0,204,153,0.35));
+}
+.footer-tag {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--fg-mute);
+  max-width: 32ch;
+  line-height: 1.6;
+}
+.footer-col h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 24px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col a {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+}
+.footer-col a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.footer-col a:hover::after { transform: scaleX(1); }
+
+.footer-bottom {
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-bottom a { color: var(--green); }
+
+@media (max-width: 900px) {
+  .footer { padding: 64px 24px 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.d1 { transition-delay: 0.05s; }
+.reveal.d2 { transition-delay: 0.12s; }
+.reveal.d3 { transition-delay: 0.2s; }
+.reveal.d4 { transition-delay: 0.28s; }
+.reveal.d5 { transition-delay: 0.36s; }
+.reveal.d6 { transition-delay: 0.44s; }
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* selection */
+::selection { background: var(--green); color: #000; }
+</style>
+</head>
+
+<body>
+
+<!-- ===== Inline ISO definitions (reuse via <use>) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="dbyteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00CC99" />
+      <stop offset="100%" stop-color="#35A8E0" />
+    </linearGradient>
+
+    <!-- The "D" iso: outline-only D shape inside a soft ring -->
+    <symbol id="iso-d" viewBox="0 0 100 100">
+      <!-- outer ring at 0.3 opacity -->
+      <circle cx="50" cy="50" r="46" fill="none" stroke="url(#dbyteGrad)" stroke-width="2.2" opacity="0.3" />
+      <!-- the D: half-circle with vertical bar, hollow -->
+      <path d="M 30 22 L 30 78 L 52 78 A 28 28 0 0 0 52 22 Z"
+            fill="none"
+            stroke="url(#dbyteGrad)"
+            stroke-width="9"
+            stroke-linejoin="round"
+            stroke-linecap="round" />
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== Custom cursor ===== -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav" aria-label="Principal">
+  <a href="#hero" class="nav-logo" data-cursor>
+    <img class="iso" src="assets/iso-gradient-blanca.png" alt="DBYTE" />
+    <span class="wordmark">
+      <span class="wordmark-name">DBYTE</span>
+      <span class="wordmark-tag">IT · SEC · CLOUD</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero" data-cursor>Inicio</a></li>
+    <li><a href="#nosotros" data-cursor>Nosotros</a></li>
+    <li><a href="#servicios" data-cursor>Servicios</a></li>
+    <li><a href="#contacto" data-cursor>Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta" data-cursor>Generar ticket</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero" data-screen-label="01 Hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Managed IT Services · Buenos Aires · 2026</span>
+    </div>
+    <div class="hero-line" aria-hidden="true"></div>
+    <h1 class="hero-title">
+      <span class="hero-rotator" aria-live="polite">
+        <span class="hero-rotator-track" id="rotator">
+          <span class="hero-rotator-word entering">Infraestructura.</span>
+        </span>
+      </span>
+    </h1>
+    <p class="hero-sub">
+      Soluciones integrales de hardware y software para PyMEs y empresas de Argentina y Latinoamérica.
+      Estamos cuando algo se rompe — y antes, para que no pase.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#contacto" class="btn-primary" data-cursor>
+        Contactanos
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="#servicios" class="btn-outline" data-cursor>
+        Ver servicios
+        <span class="arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal" aria-hidden="true">
+      <div class="term-bar">
+        <div class="term-dots">
+          <span class="term-dot r"></span>
+          <span class="term-dot y"></span>
+          <span class="term-dot g"></span>
+        </div>
+        <div class="term-title">
+          <span id="chipTitle">dbyte@ai-ops</span>
+          <span class="agent-tag" id="termTag"><span class="pulse-dot"></span>AI AGENT</span>
+        </div>
+        <div style="width:48px"></div>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+
+    <div class="term-chip tl">
+      <span class="num" id="chipNum">14k</span>
+      <span id="chipLabel">docs<br/>procesados</span>
+    </div>
+    <div class="term-chip br">
+      <span class="num" id="chipMetric">92%</span>
+      <span id="chipMetricLabel">precisión<br/>extracción</span>
+    </div>
+  </div>
+
+  <div class="hero-corner">
+    <span class="bar"></span>
+    <span>01 / Hero</span>
+  </div>
+  <div class="hero-corner-right">
+    <span class="label">Coordenadas</span>
+    <span class="val">−34.6037° S</span><br/>
+    <span class="val">−58.3816° O</span>
+  </div>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="nosotros" data-screen-label="02 Nosotros">
+  <div class="section-meta reveal">
+    <span class="num">02</span>
+    <span class="slash"></span>
+    <span>Nosotros</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-label reveal">Quiénes somos</div>
+    <div class="about-text reveal d1">
+      DBYTE es un partner técnico para PyMEs y empresas de Argentina y Latinoamérica.
+      Implementamos infraestructura, <em>protegemos lo que importa</em>,
+      y respondemos cuando algo se rompe — con gente que sabe lo que hace.
+      <span style="display:block; margin-top:24px; font-family: var(--display); font-weight:500; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color: var(--fg-mute);">
+        · Argentina &middot; Chile &middot; Perú &middot; México &middot; España
+      </span>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="reveal d1">
+      <div class="stat-num">19</div>
+      <div class="stat-label">Años acompañando empresas</div>
+    </div>
+    <div class="reveal d2">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Clientes desde 2007</div>
+    </div>
+    <div class="reveal d3">
+      <div class="stat-num">5.000+</div>
+      <div class="stat-label">Implementaciones realizadas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="servicios" data-screen-label="03 Servicios">
+  <div class="section-meta reveal">
+    <span class="num">03</span>
+    <span class="slash"></span>
+    <span>Servicios</span>
+  </div>
+  <div class="services-list">
+
+    <a href="#contacto" class="svc-row featured reveal" data-cursor data-svc="ai">
+      <span class="svc-num">01</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Automatización &amp; IA</div>
+        <div class="svc-desc">Agentes y flujos con IA aplicados al negocio: respuestas automáticas, procesamiento de documentos, dashboards inteligentes. La IA que ya está acá, lista para usar.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d1" data-cursor data-svc="security">
+      <span class="svc-num">02</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 4 6v6c0 4.5 3.2 8.4 8 9 4.8-.6 8-4.5 8-9V6l-8-3Z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Seguridad Informática</div>
+        <div class="svc-desc">Firewalls, MDR, EDR, políticas de acceso, backup verificado y respuesta a incidentes. Protegemos lo que vale, sin trabar el negocio.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d2" data-cursor data-svc="management">
+      <span class="svc-num">03</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="12" rx="2"/>
+          <path d="M8 20h8M12 16v4M7 8h2M7 12h5M15 8h2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Gerenciamiento IT</div>
+        <div class="svc-desc">Operación y monitoreo 24/7 de tu infraestructura. RMM, mesa de ayuda, reportes mensuales y un único interlocutor responsable.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d3" data-cursor data-svc="software">
+      <span class="svc-num">04</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Software Factory</div>
+        <div class="svc-desc">Desarrollo a medida, integraciones, automatizaciones con IA y dashboards. Equipo full-stack en Argentina, sin time-zone surprises.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d4" data-cursor data-svc="licensing">
+      <span class="svc-num">05</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12a3 3 0 1 0-3-3"/>
+          <path d="m11 11 9 9-2.5 2.5L17 21l-1.5 1.5L14 21l-1.5 1.5L11 21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Licenciamiento</div>
+        <div class="svc-desc">Microsoft 365, Adobe, antivirus, sistemas operativos. Asesoría de licencias, alta y baja de usuarios, control de gastos.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d5" data-cursor data-svc="network">
+      <span class="svc-num">06</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a14 14 0 0 1 20 0"/>
+          <circle cx="12" cy="20" r="1.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Redes y Vigilancia</div>
+        <div class="svc-desc">Cableado estructurado, WiFi de alto rendimiento, CCTV con grabación cloud, control de acceso. Diseño, instalación y mantenimiento.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+    <a href="#contacto" class="svc-row reveal d6" data-cursor data-svc="virtualization">
+      <span class="svc-num">07</span>
+      <div class="svc-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="8" ry="2.5"/>
+          <path d="M4 6v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V6"/>
+          <path d="M4 12v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="svc-name">Virtualización</div>
+        <div class="svc-desc">Servidores virtuales, escritorios remotos (VDI), nube privada e híbrida. Escalá sin comprar fierros que no vas a usar.</div>
+      </div>
+      <div class="svc-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ===== TICKET STRIP ===== -->
+<section class="ticket" data-screen-label="04 Ticket">
+  <div class="ticket-iso-bg" aria-hidden="true">
+    <img src="assets/iso-gradient-blanca.png" alt="" style="width:80vh;height:80vh;max-width:800px;max-height:800px;object-fit:contain;" />
+  </div>
+  <div class="ticket-inner">
+    <div class="ticket-eyebrow reveal">04 — Soporte</div>
+    <h2 class="ticket-title reveal d1">
+      Hacé el seguimiento de <span class="accent">tu solicitud</span> en tiempo real.
+    </h2>
+    <a href="#" class="btn-ghost reveal d2" data-cursor>
+      Ver ticket
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== ALLIANCES ===== -->
+<section class="alliances" data-screen-label="05 Alianzas">
+  <div class="alliances-head reveal">
+    <span class="alliances-eyebrow">Alianzas estratégicas</span>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="brand-label">Google</span><span class="brand-dot"></span>
+      <span class="brand-label">Lenovo</span><span class="brand-dot"></span>
+      <span class="brand-label">Sophos</span><span class="brand-dot"></span>
+      <span class="brand-label">Microsoft</span><span class="brand-dot"></span>
+      <span class="brand-label">HP</span><span class="brand-dot"></span>
+      <span class="brand-label">AWS</span><span class="brand-dot"></span>
+      <span class="brand-label">Azure</span><span class="brand-dot"></span>
+      <span class="brand-label">Ubiquiti</span><span class="brand-dot"></span>
+      <span class="brand-label">Dell</span><span class="brand-dot"></span>
+      <span class="brand-label">LG</span><span class="brand-dot"></span>
+      <!-- duplicate for seamless loop -->
+      <span class="brand-label">Google</span><span class="brand-dot"></span>
+      <span class="brand-label">Lenovo</span><span class="brand-dot"></span>
+      <span class="brand-label">Sophos</span><span class="brand-dot"></span>
+      <span class="brand-label">Microsoft</span><span class="brand-dot"></span>
+      <span class="brand-label">HP</span><span class="brand-dot"></span>
+      <span class="brand-label">AWS</span><span class="brand-dot"></span>
+      <span class="brand-label">Azure</span><span class="brand-dot"></span>
+      <span class="brand-label">Ubiquiti</span><span class="brand-dot"></span>
+      <span class="brand-label">Dell</span><span class="brand-dot"></span>
+      <span class="brand-label">LG</span><span class="brand-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contacto" data-screen-label="06 Contacto">
+  <div class="contact-grid">
+    <div>
+      <div class="contact-eyebrow reveal">06 — Contacto</div>
+      <h2 class="contact-title reveal d1">Hablemos.</h2>
+      <form class="contact-form reveal d2" id="contactForm" novalidate>
+        <div class="form-row">
+          <label class="field">
+            <span>Nombre</span>
+            <input type="text" name="nombre" required />
+          </label>
+          <label class="field">
+            <span>Apellido</span>
+            <input type="text" name="apellido" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">
+            <span>Teléfono</span>
+            <input type="tel" name="telefono" />
+          </label>
+        </div>
+        <label class="field">
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="3" required></textarea>
+        </label>
+        <button type="submit" class="contact-submit" data-cursor>
+          Enviar
+          <span aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <div class="contact-meta reveal d3">
+        <div>
+          <span class="lbl">Dirección</span>
+          <span class="val">Gavilán 1207, Entrepiso AB · CP 1407, CABA</span>
+        </div>
+        <div>
+          <span class="lbl">Teléfono</span>
+          <span class="val">+54 11 4000 0000</span>
+        </div>
+        <div>
+          <span class="lbl">Email</span>
+          <span class="val">info@d-byte.com.ar</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="contact-aside reveal d2">
+      <iframe
+        class="contact-map"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-58.495%2C-34.625%2C-58.470%2C-34.610&amp;layer=mapnik&amp;marker=-34.6175%2C-58.4825"
+        loading="lazy"
+        title="Ubicación DBYTE"></iframe>
+      <div class="contact-aside-card">
+        <div>
+          <div class="where">Buenos Aires HQ</div>
+          <div class="sub">Lun a Vie · 9:00 — 18:00 · Soporte 24/7</div>
+        </div>
+        <span class="pulse" aria-hidden="true"></span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" data-screen-label="07 Footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">
+        <img class="iso" src="assets/iso-gradient-blanca.png" alt="DBYTE" />
+        <span>DBYTE</span>
+      </div>
+      <p class="footer-tag">
+        Partner técnico para PyMEs y empresas de Argentina y Latinoamérica.
+        Infraestructura, seguridad y continuidad de negocio.
+      </p>
+      <p class="footer-tag" style="margin-top:14px; font-family: var(--display); font-weight:600; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color: rgba(255,255,255,0.7);">
+        AR &middot; CL &middot; PE &middot; MX &middot; ES
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#hero" data-cursor>Inicio</a></li>
+        <li><a href="#nosotros" data-cursor>Nosotros</a></li>
+        <li><a href="#servicios" data-cursor>Servicios</a></li>
+        <li><a href="#contacto" data-cursor>Contacto</a></li>
+        <li><a href="#" data-cursor>Ver ticket</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="mailto:info@d-byte.com.ar" data-cursor>info@d-byte.com.ar</a></li>
+        <li><a href="tel:+541140000000" data-cursor>+54 11 4000 0000</a></li>
+        <li><a href="https://d-byte.com.ar" data-cursor>d-byte.com.ar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 DBYTE · Todos los derechos reservados</span>
+    <span><a href="https://d-byte.com.ar" data-cursor>d-byte.com.ar</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   1. Custom cursor
+   ============================================================ */
+(function () {
+  if (window.matchMedia('(max-width: 900px)').matches) return;
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let rx = mx, ry = my;
+
+  window.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  });
+
+  function loop() {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  document.querySelectorAll('[data-cursor], a, button, input, textarea, .svc-row').forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+      ring.classList.add('hover');
+      dot.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.classList.remove('hover');
+      dot.classList.remove('hover');
+    });
+  });
+})();
+
+/* ============================================================
+   2. Nav scroll state
+   ============================================================ */
+(function () {
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ============================================================
+   3. Hero text rotator
+   ============================================================ */
+(function () {
+  const words = ['Infraestructura.', 'Ciberseguridad.', 'Continuidad.', 'Escalabilidad.'];
+  const track = document.getElementById('rotator');
+  let i = 0;
+
+  function tick() {
+    const current = track.firstElementChild;
+    current.classList.remove('entering');
+    current.classList.add('exiting');
+
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      const next = document.createElement('span');
+      next.className = 'hero-rotator-word entering';
+      next.textContent = words[i];
+      track.innerHTML = '';
+      track.appendChild(next);
+    }, 580);
+  }
+
+  setInterval(tick, 2600);
+})();
+
+/* ============================================================
+   3b. Terminal — rotates between service scenarios
+   ============================================================ */
+(function () {
+  const body = document.getElementById('termBody');
+  const tag = document.getElementById('termTag');
+  const chipTitle = document.getElementById('chipTitle');
+  const chipNum = document.getElementById('chipNum');
+  const chipLabel = document.getElementById('chipLabel');
+  const chipMetric = document.getElementById('chipMetric');
+  const chipMetricLabel = document.getElementById('chipMetricLabel');
+  if (!body) return;
+
+  const SCENARIOS = [
+    {
+      key: 'ai',
+      tag: 'AI AGENT',
+      title: 'dbyte@ai-ops · ~/agent',
+      chipNum: '14k',
+      chipLabel: 'docs<br/>procesados',
+      chipMetric: '92%',
+      chipMetricLabel: 'precisión<br/>extracción',
+      lines: [
+        { c: 'p', t: 'dbyte@ai-ops', u: '~/agent', cmd: 'dbyte-agent run --flow=invoice-intake' },
+        { c: 'i', t: '→ Cargando agente · modelo: dbyte-doc-v2' },
+        { c: 'a', t: '[agent] Procesando 47 facturas en cola…' },
+        { c: 'bar', t: 'Extracción de campos', pct: 100 },
+        { c: 'i', t: '  • CUIT, fechas, totales · OK' },
+        { c: 'i', t: '  • Conciliación con ERP · OK' },
+        { c: 'warn', t: '⚠  3 facturas requieren revisión humana' },
+        { c: 'a', t: '[agent] Notificando a contabilidad por Slack…' },
+        { c: 'ok', t: '✓  44 facturas registradas automáticamente' },
+        { c: 'ok', t: '✓  Tiempo total: 11s · ahorro estimado: 4h' },
+        { c: 'meta', t: '— flow completo · agente listo para próximo lote' },
+      ],
+    },
+    {
+      key: 'security',
+      tag: 'SEC SCAN',
+      title: 'dbyte@sec-ops · ~/scan',
+      chipNum: '07',
+      chipLabel: 'vulnerabilidades<br/>detectadas',
+      chipMetric: '2.1s',
+      chipMetricLabel: 'respuesta<br/>media',
+      lines: [
+        { c: 'p', t: 'dbyte@sec-ops', u: '~/scan', cmd: 'dbyte-sec scan --target=prod' },
+        { c: 'i', t: '→ Mapeando superficie de ataque…' },
+        { c: 'i', t: '  • 142 hosts · 38 servicios expuestos' },
+        { c: 'a', t: '[agent] Cruzando con CVE feed actualizado…' },
+        { c: 'bar', t: 'Análisis heurístico', pct: 100 },
+        { c: 'warn', t: '⚠  CVE-2024-3094 · openssh 9.2 · srv-edge-02' },
+        { c: 'danger', t: '✕  Credencial expuesta · git/api-keys' },
+        { c: 'a', t: '[agent] Aplicando playbook de remediación…' },
+        { c: 'ok', t: '✓  Rotando secrets · 4 servicios afectados' },
+        { c: 'ok', t: '✓  Parche programado · ventana 02:00 ART' },
+        { c: 'meta', t: '— scan completo · 7 hallazgos · 5 mitigados auto' },
+      ],
+    },
+    {
+      key: 'management',
+      tag: 'MONITOR 24/7',
+      title: 'dbyte@noc · ~/rmm',
+      chipNum: '99.9%',
+      chipLabel: 'uptime<br/>últimos 30d',
+      chipMetric: '142',
+      chipMetricLabel: 'endpoints<br/>activos',
+      lines: [
+        { c: 'p', t: 'dbyte@noc', u: '~/rmm', cmd: 'rmm status --client=acme-sa' },
+        { c: 'i', t: '→ Recolectando telemetría de 142 endpoints…' },
+        { c: 'i', t: '  • CPU media: 34%  ·  RAM: 58%  ·  Disco: 41%' },
+        { c: 'ok', t: '✓  Backups verificados · 3/3 OK' },
+        { c: 'warn', t: '⚠  srv-files-01 · disco al 87% · acción: limpieza' },
+        { c: 'a', t: '[noc] Ticket abierto · SLA respuesta 15m' },
+        { c: 'ok', t: '✓  Limpieza ejecutada · disco al 62%' },
+        { c: 'i', t: '→ Reporte mensual generado · enviado a IT director' },
+        { c: 'meta', t: '— uptime 99.94% · 0 incidentes críticos' },
+      ],
+    },
+    {
+      key: 'software',
+      tag: 'CI/CD',
+      title: 'dbyte@dev · ~/build',
+      chipNum: '4.2m',
+      chipLabel: 'build<br/>time',
+      chipMetric: '0',
+      chipMetricLabel: 'tests<br/>fallidos',
+      lines: [
+        { c: 'p', t: 'dbyte@dev', u: '~/build', cmd: 'pnpm deploy --env=prod' },
+        { c: 'i', t: '→ Compilando aplicación cliente…' },
+        { c: 'bar', t: 'Build', pct: 100 },
+        { c: 'ok', t: '✓  Tests · 247 passed · 0 failed' },
+        { c: 'i', t: '→ Subiendo a staging · ejecutando smoke tests…' },
+        { c: 'ok', t: '✓  Smoke OK · promoviendo a producción' },
+        { c: 'a', t: '[deploy] Rolling update · 3 réplicas · zero-downtime' },
+        { c: 'ok', t: '✓  v2.14.0 en producción · 4m 12s' },
+        { c: 'meta', t: '— sin time-zone surprises · equipo en BA' },
+      ],
+    },
+    {
+      key: 'licensing',
+      tag: 'LICENSING',
+      title: 'dbyte@licenses · ~/m365',
+      chipNum: '$ 8.4k',
+      chipLabel: 'ahorro<br/>mensual',
+      chipMetric: '186',
+      chipMetricLabel: 'usuarios<br/>activos',
+      lines: [
+        { c: 'p', t: 'dbyte@licenses', u: '~/m365', cmd: 'audit licenses --tenant=acme' },
+        { c: 'i', t: '→ Auditando 240 licencias asignadas…' },
+        { c: 'warn', t: '⚠  54 licencias sin actividad >60 días' },
+        { c: 'a', t: '[agent] Sugerencia: bajar a Business Basic · 38 users' },
+        { c: 'ok', t: '✓  16 licencias liberadas · reasignadas a nuevos altas' },
+        { c: 'i', t: '→ Adobe CC · 4 licencias en uso de 12 contratadas' },
+        { c: 'a', t: '[agent] Renegociar contrato en próximo ciclo' },
+        { c: 'meta', t: '— ahorro proyectado: $ 8.400 USD/mes' },
+      ],
+    },
+    {
+      key: 'network',
+      tag: 'NETWORK',
+      title: 'dbyte@net · ~/topology',
+      chipNum: '4',
+      chipLabel: 'sucursales<br/>conectadas',
+      chipMetric: '<1ms',
+      chipMetricLabel: 'latencia<br/>LAN',
+      lines: [
+        { c: 'p', t: 'dbyte@net', u: '~/topology', cmd: 'net diag --site=all' },
+        { c: 'i', t: '→ Probing 4 sucursales · 8 access points · 2 NVR' },
+        { c: 'ok', t: '✓  WiFi 6 · throughput promedio 680 Mbps' },
+        { c: 'ok', t: '✓  CCTV · 24 cámaras · grabación cloud OK' },
+        { c: 'warn', t: '⚠  AP-recepción-03 · clientes con RSSI bajo' },
+        { c: 'a', t: '[agent] Sugerencia: reubicar AP 2m al norte' },
+        { c: 'ok', t: '✓  Control de acceso · sincronizado con AD' },
+        { c: 'meta', t: '— uplink redundante activo · failover < 200ms' },
+      ],
+    },
+    {
+      key: 'virtualization',
+      tag: 'CLOUD/VM',
+      title: 'dbyte@cloud · ~/vms',
+      chipNum: '38',
+      chipLabel: 'VMs<br/>en producción',
+      chipMetric: '+ 0',
+      chipMetricLabel: 'fierros<br/>nuevos',
+      lines: [
+        { c: 'p', t: 'dbyte@cloud', u: '~/vms', cmd: 'orchestrate scale --pool=erp' },
+        { c: 'i', t: '→ Detectando carga · pico de fin de mes' },
+        { c: 'a', t: '[agent] Provisionando 4 VMs adicionales · pool ERP' },
+        { c: 'bar', t: 'Spin-up VDI', pct: 100 },
+        { c: 'ok', t: '✓  4 VMs activas · balanceador actualizado' },
+        { c: 'i', t: '→ Auto-scale ventana: 3 días · luego liberar' },
+        { c: 'ok', t: '✓  Sin compra de hardware · costo: variable' },
+        { c: 'meta', t: '— escala on-demand · paga lo que usás' },
+      ],
+    },
+  ];
+
+  function classFor(c) {
+    return ({
+      i:'term-info', a:'term-agent', ok:'term-ok',
+      warn:'term-warn', danger:'term-danger', meta:'term-meta'
+    })[c] || 'term-info';
+  }
+
+  function appendLine(line) {
+    const el = document.createElement('div');
+    el.className = 'term-line';
+    if (line.c === 'p') {
+      el.innerHTML =
+        `<span class="term-prompt">➜</span> ` +
+        `<span class="term-user">${line.t}</span> ` +
+        `<span class="term-info">${line.u}</span> ` +
+        `<span class="term-cmd">${line.cmd || ''}</span>`;
+    } else if (line.c === 'bar') {
+      el.innerHTML =
+        `<span class="term-info">${line.t}</span>` +
+        `<span class="term-bar-fill" style="width:0"></span>` +
+        `<span class="term-meta">0%</span>`;
+    } else {
+      el.className += ' ' + classFor(line.c);
+      el.textContent = line.t;
+    }
+    body.appendChild(el);
+    requestAnimationFrame(() => el.classList.add('show'));
+
+    if (line.c === 'bar') {
+      const fill = el.querySelector('.term-bar-fill');
+      const meta = el.querySelector('.term-meta');
+      let p = 0;
+      const id = setInterval(() => {
+        p += Math.random() * 14;
+        if (p >= line.pct) { p = line.pct; clearInterval(id); }
+        fill.style.width = (p * 1.4) + 'px';
+        meta.textContent = Math.round(p) + '%';
+      }, 90);
+    }
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function delayFor(line) {
+    if (line.c === 'p') return 700;
+    if (line.c === 'a') return 800;
+    if (line.c === 'bar') return 1500;
+    if (line.c === 'warn' || line.c === 'danger') return 550;
+    return 380;
+  }
+
+  let scenarioIdx = 0;
+  let cancelled = false;
+  let timeoutId = null;
+
+  function setScenarioMeta(s) {
+    if (tag) tag.innerHTML = `<span class="pulse-dot"></span>${s.tag}`;
+    if (chipTitle) chipTitle.textContent = s.title.split('·')[0].trim();
+    if (chipNum) chipNum.textContent = s.chipNum;
+    if (chipLabel) chipLabel.innerHTML = s.chipLabel;
+    if (chipMetric) chipMetric.textContent = s.chipMetric;
+    if (chipMetricLabel) chipMetricLabel.innerHTML = s.chipMetricLabel;
+  }
+
+  function runScenario(idx) {
+    if (cancelled) return;
+    const s = SCENARIOS[idx];
+    body.classList.add('fading');
+    timeoutId = setTimeout(() => {
+      body.innerHTML = '';
+      body.classList.remove('fading');
+      setScenarioMeta(s);
+      let i = 0;
+      function step() {
+        if (cancelled) return;
+        if (i >= s.lines.length) {
+          // pause then advance
+          timeoutId = setTimeout(() => {
+            scenarioIdx = (scenarioIdx + 1) % SCENARIOS.length;
+            runScenario(scenarioIdx);
+          }, 3200);
+          return;
+        }
+        const line = s.lines[i++];
+        appendLine(line);
+        timeoutId = setTimeout(step, delayFor(line));
+      }
+      step();
+    }, 350);
+  }
+
+  // jump-to-service when hovering a row
+  document.querySelectorAll('.svc-row[data-svc]').forEach((row) => {
+    row.addEventListener('mouseenter', () => {
+      const key = row.dataset.svc;
+      const idx = SCENARIOS.findIndex((s) => s.key === key);
+      if (idx === -1 || idx === scenarioIdx) return;
+      cancelled = true;
+      clearTimeout(timeoutId);
+      cancelled = false;
+      scenarioIdx = idx;
+      runScenario(idx);
+    });
+  });
+
+  setTimeout(() => runScenario(0), 800);
+})();
+
+/* ============================================================
+   4. Scroll reveal
+   ============================================================ */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  els.forEach((el) => io.observe(el));
+})();
+
+/* ============================================================
+   5. Floating-label fields
+   ============================================================ */
+(function () {
+  document.querySelectorAll('.field input, .field textarea').forEach((input) => {
+    const update = () => {
+      const filled = input.value.trim().length > 0;
+      input.parentElement.classList.toggle('filled', filled);
+    };
+    input.addEventListener('input', update);
+    input.addEventListener('blur', update);
+    update();
+  });
+})();
+
+/* ============================================================
+   6. Form fake submit
+   ============================================================ */
+(function () {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.contact-submit');
+    btn.style.transition = 'all 0.3s ease';
+    btn.innerHTML = '✓ Enviado';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      form.reset();
+      document.querySelectorAll('.field').forEach(f => f.classList.remove('filled'));
+      btn.innerHTML = 'Enviar <span aria-hidden="true">→</span>';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2400);
+  });
+})();
+</script>
+
+</body>
+</html>
