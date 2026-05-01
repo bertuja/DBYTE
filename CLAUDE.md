@@ -14,28 +14,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 public/
-├── index.html          # Main website (63 KB, everything embedded)
+├── index.html          # Main website (~61 KB, everything embedded)
 └── assets/
     ├── iso-gradient-blanca.png   # Brand logo (white gradient)
     └── iso-original.png          # Brand logo (original)
 
 vercel.json            # Vercel config (outputDirectory: public)
+CLAUDE.md              # This guidance document
 ```
+
+**Note:** Last updated 2026-05-01 (logo enhanced, services reorganized)
 
 ## Website Architecture
 
-The `public/index.html` file contains **7 major sections**, each with distinct styling and interactivity:
+The `public/index.html` file contains **8 major sections** (nav, hero, about, services, ticket, alliances, contact, footer), each with distinct styling and interactivity:
 
 ### 1. **Navigation (`.nav`)**
 - Fixed sticky header with blur backdrop effect
-- Logo + wordmark on left, nav links + CTA button on right
+- **Logo**: Enhanced prominence (130px desktop → 95px scrolled; 100px mobile)
+- **Wordmark**: DBYTE (20px) + IT·SEC·CLOUD tag (11px, green accent)
+- Nav links + green CTA button on right
 - Scroll state: becomes darker and more compact after 80px scroll
-- Mobile: nav links hidden, only logo visible (900px breakpoint)
+- Mobile: nav links hidden, logo + CTA visible (900px breakpoint)
 
 ### 2. **Hero Section (`.hero`)**
 - Two-column grid: left (text) + right (AI terminal simulation)
 - **Left**: Animated eyebrow → gradient line → rotating title (Infraestructura/Ciberseguridad/Continuidad/Escalabilidad) → subtitle → two CTAs
-- **Right**: Terminal window with animated output that rotates through 8 service scenarios (AI, Security, Management, Software, Licensing, Network, Virtualization) — each has unique output lines, timing, and chips (floating badges with metrics)
+- **Right**: Terminal window with animated output that rotates through 7 service scenarios (AI, Security, Management, Licensing, Network, Cloud & DevOps) — each has unique output lines, timing, and chips (floating badges with metrics)
 - Entrance animations: staggered fadeUp with delays (0.2s–0.8s)
 
 ### 3. **About Section (`.about`)**
@@ -44,11 +49,11 @@ The `public/index.html` file contains **7 major sections**, each with distinct s
 - Scroll-reveal animations with delay classes (`.d1`–`.d3`)
 
 ### 4. **Services Section (`.services`)**
-- 7 rows (`.svc-row`), each with: number + icon + large service name + hidden description + arrow
+- 6 rows (`.svc-row`): Automatización & IA, Seguridad Informática, Gerenciamiento IT, Licenciamiento, Redes y Vigilancia, Cloud & DevOps
 - **Featured row** (Automatización): has gradient background on hover, affects icon/text styling
 - On hover: icon rotates & scales, name changes color, description slides in, arrow appears
 - Interactive: hovering a service row jumps the terminal simulation to that service's scenario
-- Scroll-reveal with delays (`.d1`–`.d6`)
+- Scroll-reveal with delays (`.d1`–`.d5`)
 
 ### 5. **Ticket Section (`.ticket`)**
 - Centered CTA section with background ISO logo (very light opacity)
@@ -98,20 +103,20 @@ The `public/index.html` file contains **7 major sections**, each with distinct s
 - `.entering` / `.exiting` — Text rotator animation (title word swap)
 - Custom keyframes: `fadeUp`, `lineGrow`, `clipReveal`, `clipHide`, `marquee`, `termPulse`, `pulse`
 
-## JavaScript (6 Self-Contained Modules)
+## JavaScript (7 Self-Contained Modules)
 
 All JavaScript is organized as **IIFE (Immediately Invoked Function Expressions)** at the bottom of the file. Each module is independent:
 
 1. **Custom Cursor** — Tracks mouse, renders dot + ring, expands on hover over interactive elements
 2. **Nav Scroll State** — Adds `.scrolled` class to nav after 80px scroll
 3. **Hero Text Rotator** — Cycles through 4 hero title words every 2.6s with clip-path animations
-4. **Terminal Simulation** — Renders 8 service scenarios as animated "terminal output"; interactive service rows jump to that scenario
+4. **Terminal Simulation** — Renders 7 service scenarios as animated "terminal output"; interactive service rows jump to that scenario
 5. **Scroll Reveal** — Uses IntersectionObserver to add `.in` class when elements enter viewport
 6. **Floating-Label Form** — Toggles `.filled` class on inputs/textareas when they have value
 7. **Form Fake Submit** — Prevents default form submission, shows success message, resets form
 
-**Terminal Scenarios** (in SCENARIOS array):
-Each scenario has a `key` (matches service row `data-svc`), `tag` (status badge), `title`, metrics (chipNum, chipLabel, chipMetric, chipMetricLabel), and array of `lines`. Lines have a `c` (class type: 'p', 'i', 'a', 'ok', 'warn', 'danger', 'meta', 'bar') and `t` (text). Each line type has a delay before rendering (700ms for prompts, 800ms for agent, 1500ms for progress bars, etc.).
+**Terminal Scenarios** (in SCENARIOS array, ~line 1835):
+Current scenarios: `ai`, `security`, `management`, `licensing`, `network`, `cloud` (AWS). Each has a `key` (matches service row `data-svc`), `tag` (status badge), `title`, metrics (chipNum, chipLabel, chipMetric, chipMetricLabel), and array of `lines`. Lines have a `c` (class type: 'p', 'i', 'a', 'ok', 'warn', 'danger', 'meta', 'bar') and `t` (text). Each line type has a delay before rendering (700ms for prompts, 800ms for agent, 1500ms for progress bars, etc.).
 
 ## Common Development Tasks
 
@@ -120,16 +125,23 @@ Each scenario has a `key` (matches service row `data-svc`), `tag` (status badge)
 - Test locally by opening `file:///Users/bertuja/Proyectos\ 2026/DBYTE/public/index.html` in browser (or use live server)
 - Colors use CSS variables (`:root`); change `--green`, `--blue`, or `--grad` to rebrand
 
-### 2. **Add a New Service**
-In the services section (around line 1447):
+### 2. **Add or Modify a Service**
+Currently 6 services: Automatización (featured), Seguridad, Gerenciamiento, Licenciamiento, Redes, Cloud & DevOps.
+
+**To add a new service:**
+1. In the services section (around line 1447), insert a new row with correct `d#` delay class and `data-svc` key:
 ```html
-<a href="#contacto" class="svc-row reveal d4" data-cursor data-svc="your-key">
-  <span class="svc-num">08</span>
-  <div class="svc-icon"><!-- SVG icon --></div>
-  <div><div class="svc-name">Service Name</div>...</div>
+<a href="#contacto" class="svc-row reveal d6" data-cursor data-svc="your-key">
+  <span class="svc-num">07</span>
+  <div class="svc-icon"><!-- SVG icon (24×24 viewBox) --></div>
+  <div><div class="svc-name">Service Name</div><div class="svc-desc">Description text</div></div>
+  <div class="svc-arrow"><!-- Arrow SVG --></div>
 </a>
 ```
-Then add a corresponding scenario to the SCENARIOS array in the terminal module (match `data-svc` key) so hovering the service updates the terminal output.
+2. Add corresponding scenario to the SCENARIOS array (line ~1835) with matching `key` so hovering updates terminal
+3. Renumber subsequent services and delay classes
+
+**Recent changes:** Software Factory removed (was #4), Virtualization → Cloud & DevOps (now #6 with AWS focus)
 
 ### 3. **Update Contact Info**
 Search for the current phone/email/address in the HTML:
@@ -188,9 +200,16 @@ No automatic GitHub→Vercel sync is configured; deploy must be manual or via Ve
 - **Alias**: https://dbyte-website.vercel.app (production domain)
 - **.gitignore**: Includes `.vercel/`, `.claude/`, other untracked directories
 
+## Recent Updates
+
+- ✅ **Logo enhancement** (Commit: aee2e4b) — Logo size 130px (desktop) / 95px (scrolled) / 100px (mobile), text scaled to 20px/11px
+- ✅ **Services refactor** (Commit: 54c054c) — Removed Software Factory, changed Virtualization → Cloud & DevOps (AWS), 6 services total
+- ✅ **Terminal scenarios updated** — 7 active scenarios (removed software, added cloud AWS scenario)
+
 ## Known Limitations & Future Improvements
 
-1. **Form submission is fake** — Currently shows success message but does not actually send data anywhere. To integrate with email/CMS, update the form submit handler (line 2108) to POST to an endpoint.
-2. **Terminal scenarios are hardcoded** — New services require manual JavaScript array update; could be refactored into data attributes or a separate JSON file.
+1. **Form submission is fake** — Currently shows success message but does not send data. To integrate with email/CMS, update form submit handler (line ~2100) to POST to an endpoint.
+2. **Terminal scenarios are hardcoded** — New services require manual JavaScript array update; could be refactored into data attributes or JSON file.
 3. **No analytics configured** — Consider adding Vercel Analytics or Sentry for production monitoring.
 4. **Mobile terminal** — Terminal is hidden on mobile (`.term-chip` display: none at 600px); could be redesigned for smaller screens.
+5. **Line numbers subject to change** — CSS/JS selectors are stable; line numbers may drift as content updates
