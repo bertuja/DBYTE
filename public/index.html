@@ -1497,24 +1497,8 @@ section { position: relative; }
       </div>
     </a>
 
-    <a href="#contacto" class="svc-row reveal d3" data-cursor data-svc="software">
+    <a href="#contacto" class="svc-row reveal d2" data-cursor data-svc="licensing">
       <span class="svc-num">04</span>
-      <div class="svc-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/>
-        </svg>
-      </div>
-      <div>
-        <div class="svc-name">Software Factory</div>
-        <div class="svc-desc">Desarrollo a medida, integraciones, automatizaciones con IA y dashboards. Equipo full-stack en Argentina, sin time-zone surprises.</div>
-      </div>
-      <div class="svc-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-      </div>
-    </a>
-
-    <a href="#contacto" class="svc-row reveal d4" data-cursor data-svc="licensing">
-      <span class="svc-num">05</span>
       <div class="svc-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 12a3 3 0 1 0-3-3"/>
@@ -1530,8 +1514,8 @@ section { position: relative; }
       </div>
     </a>
 
-    <a href="#contacto" class="svc-row reveal d5" data-cursor data-svc="network">
-      <span class="svc-num">06</span>
+    <a href="#contacto" class="svc-row reveal d3" data-cursor data-svc="network">
+      <span class="svc-num">05</span>
       <div class="svc-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a14 14 0 0 1 20 0"/>
@@ -1547,18 +1531,16 @@ section { position: relative; }
       </div>
     </a>
 
-    <a href="#contacto" class="svc-row reveal d6" data-cursor data-svc="virtualization">
-      <span class="svc-num">07</span>
+    <a href="#contacto" class="svc-row reveal d4" data-cursor data-svc="cloud">
+      <span class="svc-num">06</span>
       <div class="svc-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <ellipse cx="12" cy="6" rx="8" ry="2.5"/>
-          <path d="M4 6v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V6"/>
-          <path d="M4 12v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/>
+          <path d="M14 12l-8 8M19 3v6M2 9v6M9 2h6M6 6h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2Z"/>
         </svg>
       </div>
       <div>
-        <div class="svc-name">Virtualización</div>
-        <div class="svc-desc">Servidores virtuales, escritorios remotos (VDI), nube privada e híbrida. Escalá sin comprar fierros que no vas a usar.</div>
+        <div class="svc-name">Cloud & DevOps</div>
+        <div class="svc-desc">Infraestructura cloud en AWS, CI/CD, deploy automatizado, escalabilidad on-demand. Infraestructura como código, monitoreo y optimización de costos.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1882,26 +1864,6 @@ section { position: relative; }
       ],
     },
     {
-      key: 'software',
-      tag: 'CI/CD',
-      title: 'dbyte@dev · ~/build',
-      chipNum: '4.2m',
-      chipLabel: 'build<br/>time',
-      chipMetric: '0',
-      chipMetricLabel: 'tests<br/>fallidos',
-      lines: [
-        { c: 'p', t: 'dbyte@dev', u: '~/build', cmd: 'pnpm deploy --env=prod' },
-        { c: 'i', t: '→ Compilando aplicación cliente…' },
-        { c: 'bar', t: 'Build', pct: 100 },
-        { c: 'ok', t: '✓  Tests · 247 passed · 0 failed' },
-        { c: 'i', t: '→ Subiendo a staging · ejecutando smoke tests…' },
-        { c: 'ok', t: '✓  Smoke OK · promoviendo a producción' },
-        { c: 'a', t: '[deploy] Rolling update · 3 réplicas · zero-downtime' },
-        { c: 'ok', t: '✓  v2.14.0 en producción · 4m 12s' },
-        { c: 'meta', t: '— sin time-zone surprises · equipo en BA' },
-      ],
-    },
-    {
       key: 'licensing',
       tag: 'LICENSING',
       title: 'dbyte@licenses · ~/m365',
@@ -1940,22 +1902,24 @@ section { position: relative; }
       ],
     },
     {
-      key: 'virtualization',
-      tag: 'CLOUD/VM',
-      title: 'dbyte@cloud · ~/vms',
-      chipNum: '38',
-      chipLabel: 'VMs<br/>en producción',
-      chipMetric: '+ 0',
-      chipMetricLabel: 'fierros<br/>nuevos',
+      key: 'cloud',
+      tag: 'AWS DEPLOY',
+      title: 'dbyte@devops · ~/infra',
+      chipNum: '12',
+      chipLabel: 'instancias<br/>activas',
+      chipMetric: '$ 2.4k',
+      chipMetricLabel: 'costo<br/>mensual',
       lines: [
-        { c: 'p', t: 'dbyte@cloud', u: '~/vms', cmd: 'orchestrate scale --pool=erp' },
-        { c: 'i', t: '→ Detectando carga · pico de fin de mes' },
-        { c: 'a', t: '[agent] Provisionando 4 VMs adicionales · pool ERP' },
-        { c: 'bar', t: 'Spin-up VDI', pct: 100 },
-        { c: 'ok', t: '✓  4 VMs activas · balanceador actualizado' },
-        { c: 'i', t: '→ Auto-scale ventana: 3 días · luego liberar' },
-        { c: 'ok', t: '✓  Sin compra de hardware · costo: variable' },
-        { c: 'meta', t: '— escala on-demand · paga lo que usás' },
+        { c: 'p', t: 'dbyte@devops', u: '~/infra', cmd: 'terraform apply --auto-approve' },
+        { c: 'i', t: '→ Validando stack de infraestructura AWS…' },
+        { c: 'a', t: '[agent] Creando 3 EC2 t3.large · us-east-1' },
+        { c: 'bar', t: 'Provisioning', pct: 100 },
+        { c: 'ok', t: '✓  RDS PostgreSQL 15 · Multi-AZ enabled' },
+        { c: 'ok', t: '✓  ALB configurado · SSL/TLS activo' },
+        { c: 'i', t: '→ Aplicando CI/CD pipeline… GitHub Actions' },
+        { c: 'ok', t: '✓  Auto-scaling group activo · 2-12 instancias' },
+        { c: 'ok', t: '✓  CloudWatch monitoring · alertas OK' },
+        { c: 'meta', t: '— infraestructura escalable · zero-downtime deploys' },
       ],
     },
   ];
