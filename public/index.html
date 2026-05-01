@@ -115,7 +115,7 @@ img, svg { display: block; max-width: 100%; }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   font-family: var(--display);
   font-weight: 800;
   font-size: 15px;
@@ -124,30 +124,30 @@ img, svg { display: block; max-width: 100%; }
 }
 .nav-logo:hover { transform: scale(1.02); }
 .nav-logo .iso {
-  width: 76px;
-  height: 76px;
+  width: 130px;
+  height: 130px;
   object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(0,204,153,0.35));
+  filter: drop-shadow(0 0 32px rgba(0,204,153,0.4));
   transition: filter 0.4s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);
 }
 .nav.scrolled .nav-logo .iso {
-  width: 60px;
-  height: 60px;
-  filter: drop-shadow(0 0 16px rgba(0,204,153,0.4));
+  width: 95px;
+  height: 95px;
+  filter: drop-shadow(0 0 22px rgba(0,204,153,0.45));
 }
 .nav-logo .wordmark {
   display: flex;
   flex-direction: column;
   line-height: 1;
 }
-.nav-logo .wordmark-name { font-weight: 800; font-size: 14px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85); }
+.nav-logo .wordmark-name { font-weight: 800; font-size: 20px; letter-spacing: 0.18em; color: rgba(255,255,255,0.9); }
 .nav-logo .wordmark-tag {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.32em;
-  color: var(--fg-mute);
-  margin-top: 4px;
+  color: var(--green);
+  margin-top: 6px;
 }
 .nav-links {
   display: flex;
@@ -197,6 +197,8 @@ img, svg { display: block; max-width: 100%; }
   .nav { padding: 16px 24px; }
   .nav.scrolled { padding: 12px 24px; }
   .nav-links { display: none; }
+  .nav-logo .iso { width: 100px; height: 100px; }
+  .nav.scrolled .nav-logo .iso { width: 75px; height: 75px; }
 }
 
 /* ============================================================
