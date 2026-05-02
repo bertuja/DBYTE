@@ -15,6 +15,9 @@
   gtag('config', 'G-EJ5JBGWP5W');
 </script>
 
+<!-- Google reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LeCzNUsAAAAAPK_F769ReDoPEgHVl_k3vFPeHcG"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -1765,6 +1768,7 @@ section { position: relative; }
           <textarea name="mensaje" rows="3" required data-fs-field></textarea>
           <span data-fs-error="mensaje" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
         </label>
+        <input type="hidden" name="g-recaptcha-response" id="recaptchaToken" />
         <button type="submit" class="contact-submit" data-cursor data-fs-submit-btn>
           Enviar
           <span aria-hidden="true">→</span>
@@ -2216,7 +2220,35 @@ section { position: relative; }
 })();
 
 /* ============================================================
-   6. Form submission handled by Formspree @formspree/ajax
+   6. reCAPTCHA v3 token generation
+   ============================================================ */
+(function () {
+  const form = document.getElementById('contactForm');
+  const tokenField = document.getElementById('recaptchaToken');
+  if (!form || !tokenField) return;
+
+  let isGeneratingToken = false;
+
+  form.addEventListener('submit', (e) => {
+    // If token is empty and we're not already generating, generate it
+    if (!tokenField.value && !isGeneratingToken) {
+      e.preventDefault();
+      isGeneratingToken = true;
+
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LeCzNUsAAAAAPK_F769ReDoPEgHVl_k3vFPeHcG', {action: 'submit'}).then(function(token) {
+          tokenField.value = token;
+          isGeneratingToken = false;
+          // Now submit the form (it will have the token)
+          form.submit();
+        });
+      });
+    }
+  });
+})();
+
+/* ============================================================
+   7. Form submission handled by Formspree @formspree/ajax
    ============================================================ */
 // Initialize Formspree form integration (see CDN script below)
 </script>
