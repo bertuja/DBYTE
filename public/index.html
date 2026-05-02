@@ -234,11 +234,11 @@
       <div class="stat-label">Años acompañando empresas</div>
     </div>
     <div class="reveal d2">
-      <div class="stat-num">300+</div>
+      <div class="stat-num">300</div>
       <div class="stat-label">Clientes desde 2007</div>
     </div>
     <div class="reveal d3">
-      <div class="stat-num">5.000+</div>
+      <div class="stat-num">5000</div>
       <div class="stat-label">Implementaciones realizadas</div>
     </div>
   </div>
@@ -1016,10 +1016,8 @@
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
         animated = true;
-        const rawText = el.textContent.replace(/[^\d]/g, '');
-        const finalValue = parseInt(rawText);
-        const isSuffix = el.textContent.includes('+');
-        const duration = 1800;
+        const finalValue = parseInt(el.textContent);
+        const duration = 1200;
         const fps = 60;
         const frames = Math.ceil((duration / 1000) * fps);
         let currentFrame = 0;
@@ -1035,10 +1033,10 @@
           const currentValue = Math.round(finalValue * easeProgress);
 
           if (currentValue >= finalValue || currentFrame >= frames) {
-            el.textContent = finalValue + (isSuffix ? '+' : '');
+            el.textContent = finalValue;
             clearInterval(interval);
           } else {
-            el.textContent = currentValue + (isSuffix ? '+' : '');
+            el.textContent = currentValue;
           }
         }, 1000 / fps);
       }
