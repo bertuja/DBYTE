@@ -1719,32 +1719,44 @@ section { position: relative; }
     <div>
       <div class="contact-eyebrow reveal">06 — Contacto</div>
       <h2 class="contact-title reveal d1">Hablemos.</h2>
-      <form class="contact-form reveal d2" id="contactForm" novalidate>
+
+      <div data-fs-success class="contact-success" style="padding:16px; background:rgba(0,204,153,0.15); border:1px solid rgba(0,204,153,0.3); border-radius:8px; color:var(--green); margin-bottom:24px; display:none;">
+        ✓ ¡Gracias! Hemos recibido tu mensaje. Nos contactaremos pronto.
+      </div>
+      <div data-fs-error class="contact-error" style="padding:16px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); border-radius:8px; color:#ef4444; margin-bottom:24px; display:none;">
+      </div>
+
+      <form class="contact-form reveal d2" id="contactForm">
         <div class="form-row">
           <label class="field">
             <span>Nombre</span>
-            <input type="text" name="nombre" required />
+            <input type="text" name="nombre" required data-fs-field />
+            <span data-fs-error="nombre" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
           </label>
           <label class="field">
             <span>Apellido</span>
-            <input type="text" name="apellido" required />
+            <input type="text" name="apellido" required data-fs-field />
+            <span data-fs-error="apellido" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
           </label>
         </div>
         <div class="form-row">
           <label class="field">
             <span>Email</span>
-            <input type="email" name="email" required />
+            <input type="email" name="email" required data-fs-field />
+            <span data-fs-error="email" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
           </label>
           <label class="field">
             <span>Teléfono</span>
-            <input type="tel" name="telefono" />
+            <input type="tel" name="telefono" data-fs-field />
+            <span data-fs-error="telefono" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
           </label>
         </div>
         <label class="field">
           <span>Mensaje</span>
-          <textarea name="mensaje" rows="3" required></textarea>
+          <textarea name="mensaje" rows="3" required data-fs-field></textarea>
+          <span data-fs-error="mensaje" style="color:#ef4444; font-size:12px; margin-top:4px; display:block;"></span>
         </label>
-        <button type="submit" class="contact-submit" data-cursor>
+        <button type="submit" class="contact-submit" data-cursor data-fs-submit-btn>
           Enviar
           <span aria-hidden="true">→</span>
         </button>
@@ -2195,28 +2207,17 @@ section { position: relative; }
 })();
 
 /* ============================================================
-   6. Form fake submit
+   6. Form submission handled by Formspree @formspree/ajax
    ============================================================ */
-(function () {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.contact-submit');
-    btn.style.transition = 'all 0.3s ease';
-    btn.innerHTML = '✓ Enviado';
-    btn.style.background = 'var(--green)';
-    btn.style.color = '#000';
-    setTimeout(() => {
-      form.reset();
-      document.querySelectorAll('.field').forEach(f => f.classList.remove('filled'));
-      btn.innerHTML = 'Enviar <span aria-hidden="true">→</span>';
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 2400);
-  });
-})();
+// Initialize Formspree form integration (see CDN script below)
 </script>
+
+<!-- Formspree AJAX Integration -->
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contactForm', formId: 'mrejbnyo' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
