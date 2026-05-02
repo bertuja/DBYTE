@@ -1,5 +1,52 @@
 {
   "outputDirectory": "public",
+  "redirects": [
+    {
+      "source": "/servicios",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/productos",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/productos/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/aboutus",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/novedades/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
