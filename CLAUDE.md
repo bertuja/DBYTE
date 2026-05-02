@@ -15,18 +15,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 public/
-├── index.html                    # Main website (~72 KB, all HTML/CSS/JS embedded)
+├── index.html                    # Main website (~68 KB, all HTML/CSS/JS embedded, minified)
 ├── sitemap.xml                   # XML sitemap for Google indexing
 ├── robots.txt                    # Crawler directives + sitemap reference
 └── assets/
     ├── iso-gradient-blanca.png   # Brand logo (white gradient)
-    └── iso-original.png          # Brand logo (original)
+    ├── iso-gradient-blanca.webp  # Brand logo (WebP, 57% smaller)
+    └── iso-original.png          # Brand logo (original, unused)
 
 vercel.json            # Vercel config (outputDirectory: public)
 CLAUDE.md              # This guidance document
 ```
 
-**Note:** Last updated 2026-05-02 (Performance optimizations: lazy loading, defer scripts, cache headers; SEO + form integration complete)
+**Note:** Last updated 2026-05-02 (Phase 2 Performance optimizations: LCP fix, resource hints, WebP images, CSS/JS minification; SEO setup guide + Google Business Profile checklist provided)
 
 ## Website Architecture
 
@@ -336,11 +337,18 @@ All integrations are configured in `public/index.html` via CDN or JavaScript API
   - Keywords, robots meta directives
   - FAQSchema for featured snippets
   - Improved heading hierarchy (H1 → H2s)
-- ✅ **Performance Optimization**:
+- ✅ **Performance Optimization (Phase 1)**:
   - Lazy loading on all images (`loading="lazy"`)
   - Deferred scripts (GA4, reCAPTCHA v3, Formspree)
   - HTTP cache headers in vercel.json (1yr for assets, 1hr for HTML)
   - Improves LCP by ~200-300ms, FID by ~50-100ms
+- ✅ **Performance Optimization (Phase 2 — 2026-05-02)**:
+  - **LCP Fix**: Hero logo changed from `loading="lazy"` → `loading="eager"` with `fetchpriority="high"`
+  - **Resource Hints**: Added preconnect/dns-prefetch for external CDNs (cdn.jsdelivr.net, unpkg.com, googletagmanager.com)
+  - **WebP Conversion**: Logo PNG 102KB → WebP 44KB (57% savings) with `<picture>` fallback
+  - **CSS/JS Minification**: CSS 21% reduction, total file size 75.3KB → 68.4KB (9%)
+  - **Expected improvements**: LCP +200-400ms faster, FID +30-50ms faster, zero CLS impact
+- ✅ **SEO Setup Guide**: Comprehensive guide for Google Search Console + Business Profile (external manual setup)
 
 ## Testing & Performance Monitoring
 
@@ -357,10 +365,10 @@ https://search.google.com/test/rich-results?url=www.d-byte.com.ar
 ```
 
 **Performance benchmarks** (as of 2026-05-02):
-- LCP: ~2.1s (target: < 2.5s) ✅
-- FID: ~25ms (target: < 100ms) ✅
-- CLS: ~0.05 (target: < 0.1) ✅
-- File size: ~76KB HTML + ~300KB images
+- **Before Phase 2**: LCP ~2.1s, FID ~25ms, CLS ~0.05, File size ~76KB HTML
+- **After Phase 2**: LCP expected ~1.7-1.9s, FID expected ~15-20ms, CLS ~0.05, File size ~68KB HTML (9% reduction)
+- **Assets**: Logo PNG 102KB, WebP 44KB (57% savings), other images on CDN
+- **All metrics**: Exceed targets (LCP < 2.5s, FID < 100ms, CLS < 0.1) ✅
 
 **What to monitor**:
 - Run PageSpeed Insights monthly to catch regressions
@@ -377,5 +385,6 @@ https://search.google.com/test/rich-results?url=www.d-byte.com.ar
    - External CMS integration (Strapi, Sanity, etc.)
 4. **Sitemap is manual** — sitemap.xml updated by hand; if adding new major sections, remember to update it and deploy
 5. **CSS/JS line numbers drift** — Selectors are stable, but line numbers change; refer to section headers instead when referencing code
-6. **Google Search Console not yet configured** — Site is live but not submitted to GSC; next priority for improved visibility and monitoring
-7. **Minification not implemented** — CSS/JS could be minified for ~15-20KB savings, but would require build step; not critical given current size
+6. **Google Search Console / Business Profile** — Setup guide provided in `SEO_SETUP_GUIDE.md`; next step is manual user configuration (external to code)
+   - See `SEO_SETUP_GUIDE.md` for step-by-step instructions
+   - Requires: GSC HTML meta verification tag, Business Profile creation/verification
