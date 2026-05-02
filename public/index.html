@@ -1323,6 +1323,81 @@ section { position: relative; }
 /* selection */
 ::selection { background: var(--green); color: #000; }
 </style>
+
+<!-- Schema Markup for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "DBYTE",
+  "description": "Partner técnico especializado en infraestructura IT, ciberseguridad y continuidad de negocio para PyMEs y empresas",
+  "url": "https://dbyte-website.vercel.app",
+  "telephone": "+5491131040042",
+  "email": "info@d-byte.com.ar",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Gavilán 1207, Entrepiso AB",
+    "addressLocality": "Buenos Aires",
+    "postalCode": "C1407",
+    "addressCountry": "AR"
+  },
+  "areaServed": ["AR", "CL", "PE", "MX", "ES"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "availableLanguageID": "es"
+  },
+  "sameAs": [
+    "https://instagram.com/dbytesrl",
+    "https://www.linkedin.com/company/dbytesrl",
+    "https://twitter.com/dbytesrl"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "DBYTE",
+  "logo": "https://dbyte-website.vercel.app/assets/iso-gradient-blanca.png",
+  "foundingDate": "2007",
+  "foundingLocation": "Buenos Aires, Argentina",
+  "numberOfEmployees": 20,
+  "service": [
+    {
+      "@type": "Service",
+      "name": "Automatización & IA",
+      "description": "Agentes inteligentes y flujos de automatización con IA"
+    },
+    {
+      "@type": "Service",
+      "name": "Seguridad Informática",
+      "description": "Defensa multinivel con MDR, EDR y respuesta a incidentes"
+    },
+    {
+      "@type": "Service",
+      "name": "Gerenciamiento IT",
+      "description": "Monitoreo 24/7 y operación de infraestructura"
+    },
+    {
+      "@type": "Service",
+      "name": "Cloud & DevOps",
+      "description": "Arquitectura cloud en AWS con CI/CD automatizado"
+    },
+    {
+      "@type": "Service",
+      "name": "Licenciamiento",
+      "description": "Gestión integral de licencias empresariales"
+    },
+    {
+      "@type": "Service",
+      "name": "Redes y Vigilancia",
+      "description": "Infraestructura de redes y monitoreo CCTV"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -1357,7 +1432,7 @@ section { position: relative; }
 <!-- ===== NAV ===== -->
 <nav class="nav" id="nav" aria-label="Principal">
   <a href="#hero" class="nav-logo" data-cursor>
-    <img class="iso" src="assets/iso-gradient-blanca.png" alt="DBYTE" />
+    <img class="iso" src="assets/iso-gradient-blanca.png" alt="Logo DBYTE - Soluciones de Infraestructura IT" />
     <span class="wordmark">
       <span class="wordmark-name">DBYTE</span>
       <span class="wordmark-tag">IT · SEC · CLOUD</span>
@@ -1495,7 +1570,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Automatización &amp; IA</div>
-        <div class="svc-desc">Agentes y flujos con IA aplicados al negocio: respuestas automáticas, procesamiento de documentos, dashboards inteligentes. La IA que ya está acá, lista para usar.</div>
+        <div class="svc-desc">Agentes inteligentes y flujos de automatización con IA: respuestas automáticas 24/7, procesamiento inteligente de documentos y facturas, dashboards predictivos. Optimizamos procesos manuales con Machine Learning y NLP aplicados a tu negocio.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1512,7 +1587,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Seguridad Informática</div>
-        <div class="svc-desc">Firewalls, MDR, EDR, políticas de acceso, backup verificado y respuesta a incidentes. Protegemos lo que vale, sin trabar el negocio.</div>
+        <div class="svc-desc">Defensa multinivel: firewalls avanzados, MDR (Managed Detection & Response), EDR endpoints, políticas de acceso y control. Backups verificados, respuesta a incidentes 24/7 y compliance RGPD/ISO. Protección sin interferir operaciones.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1529,7 +1604,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Gerenciamiento IT</div>
-        <div class="svc-desc">Operación y monitoreo 24/7 de tu infraestructura. RMM, mesa de ayuda, reportes mensuales y un único interlocutor responsable.</div>
+        <div class="svc-desc">Operación y monitoreo 24/7 de infraestructura crítica. RMM (Remote Monitoring & Management), mesa de ayuda dedicada, alertas en tiempo real, reportes de cumplimiento mensuales y SLAs garantizados. Un único interlocutor responsable de tu continuidad.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1546,7 +1621,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Licenciamiento</div>
-        <div class="svc-desc">Microsoft 365, Adobe, antivirus, sistemas operativos. Asesoría de licencias, alta y baja de usuarios, control de gastos.</div>
+        <div class="svc-desc">Gestión integral de licencias: Microsoft 365, Adobe Creative Cloud, antivirus enterprise, SO. Asesoría de compliance, optimización de costos, auditorías de activos, alta/baja de usuarios, renovaciones automáticas.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1563,7 +1638,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Redes y Vigilancia</div>
-        <div class="svc-desc">Cableado estructurado, WiFi de alto rendimiento, CCTV con grabación cloud, control de acceso. Diseño, instalación y mantenimiento.</div>
+        <div class="svc-desc">Infraestructura de redes empresarial: cableado estructurado CAT6A, WiFi 6E de alto rendimiento, CCTV con grabación cloud. Control de acceso biométrico, segmentación de VLANs, redundancia. Diseño, instalación y mantenimiento preventivo.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1579,7 +1654,7 @@ section { position: relative; }
       </div>
       <div>
         <div class="svc-name">Cloud & DevOps</div>
-        <div class="svc-desc">Infraestructura cloud en AWS, CI/CD, deploy automatizado, escalabilidad on-demand. Infraestructura como código, monitoreo y optimización de costos.</div>
+        <div class="svc-desc">Arquitectura cloud escalable en AWS: EC2, RDS, S3, Lambda. CI/CD pipelines automatizados, infrastructure-as-code (Terraform), monitoreo CloudWatch, auto-scaling. Optimización de costos, disaster recovery y zero-downtime deployments.</div>
       </div>
       <div class="svc-arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
@@ -1713,7 +1788,7 @@ section { position: relative; }
   <div class="footer-top">
     <div>
       <div class="footer-brand">
-        <img class="iso" src="assets/iso-gradient-blanca.png" alt="DBYTE" />
+        <img class="iso" src="assets/iso-gradient-blanca.png" alt="Logo DBYTE - Soluciones de Infraestructura IT" />
         <span>DBYTE</span>
       </div>
       <p class="footer-tag">
