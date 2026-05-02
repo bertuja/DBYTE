@@ -28,11 +28,11 @@ SEO_SETUP_GUIDE.md       # Step-by-step guide for Google Search Console + Busine
 CLAUDE.md                # This guidance document
 ```
 
-**Note:** Last updated 2026-05-02 (Phase 2 Performance optimizations: LCP fix, resource hints, WebP images, CSS/JS minification; 301 redirects for old URLs; SEO setup guide + Business Profile checklist provided)
+**Note:** Last updated 2026-05-02 (Added Support/Knowledge Base Center section with 6 interactive cards linking to hdesk.d-byte.com.ar/portal/es/kb; all KB links unified to home endpoint)
 
 ## Website Architecture
 
-The `public/index.html` file contains **8 major sections** (nav, hero, about, services, ticket, alliances, contact, footer), each with distinct styling and interactivity:
+The `public/index.html` file contains **9 major sections** (nav, hero, about, services, ticket, alliances, support, contact, footer), each with distinct styling and interactivity:
 
 ### 1. **Navigation (`.nav`)**
 - Fixed sticky header with blur backdrop effect
@@ -69,7 +69,23 @@ The `public/index.html` file contains **8 major sections** (nav, hero, about, se
 - Marquee carousel of 10 partner logos (Google, Microsoft, AWS, etc) that loop infinitely
 - Duplicated track for seamless infinite scroll
 
-### 7. **Contact Section (`.contact`)**
+### 7. **Support / Knowledge Base Center (`.support`)**
+- Dark background (`.bg-alt`) with responsive grid of support cards
+- **6 interactive cards** with SVG icons, titles, descriptions, and links:
+  1. Base de Conocimientos — Full KB search
+  2. Impresoras & Equipos — Hardware defaults, reset guides
+  3. Windows & Sistemas — OS troubleshooting
+  4. Cloud & DevOps — AWS, CI/CD documentation
+  5. Redes & Conectividad — WiFi, VPN, DNS configuration
+  6. Enviar un Ticket — Direct to ticket submission form
+- **All cards except #6** point to: `https://hdesk.d-byte.com.ar/portal/es/kb` (unified KB home)
+- **Card #6 (Ticket)** points to: `https://hdesk.d-byte.com.ar/portal/es/newticket`
+- **Hover effects**: Border color change to green, slight translateY(-4px), gradient backdrop appears
+- **Layout**: 3-column grid (desktop) → 2-column (1100px) → 1-column (900px)
+- **Scroll-reveal** with delay classes (`.d1`–`.d6`)
+- **SEO benefit**: Bridges gap between marketing site and Help Desk, improves discoverability of support resources
+
+### 8. **Contact Section (`.contact`)** (renumbered from 7)
 - Gradient background (green→teal→blue)
 - Two-column: left (form + metadata), right (embedded Google Maps + location badge with pulse animation)
 - Form: floating-label fields that animate on focus/fill with `data-fs-field` attributes
@@ -77,7 +93,7 @@ The `public/index.html` file contains **8 major sections** (nav, hero, about, se
 - **Feedback**: Shows green success message "✓ ¡Gracias! Hemos recibido tu mensaje. Nos contactaremos en breve." for 3 seconds, then auto-resets
 - Error messages shown with red alert if submission fails
 
-### 8. **Footer (`.footer`)**
+### 9. **Footer (`.footer`)**
 - Three-column grid: brand + description, nav links, contact links
 - Top/bottom borders, small text, social media links
 
@@ -244,7 +260,7 @@ No automatic GitHub→Vercel sync is configured; deploy must be manual.
 **Schema Markup** (JSON-LD):
 - **LocalBusiness**: Company info (name, address, phone, service areas)
 - **Organization**: Company branding + services list
-- **FAQPage**: 4 common questions with answers (improves featured snippets in Google)
+- **FAQPage**: 5 common questions with answers including Support KB reference (improves featured snippets in Google)
 
 **Indexing Files**:
 - **sitemap.xml**: Lists 5 main pages/sections (home, hero, nosotros, servicios, contacto)
@@ -383,6 +399,14 @@ All integrations are configured in `public/index.html` via CDN or JavaScript API
   - Permanent (HTTP 301), so Google automatically reindexes
   - User submitted URL for reindexing via Google Search Console
   - Timeline: Old snippets/URLs will update in Google's index over 1-4 weeks
+- ✅ **Support / Knowledge Base Center** (2026-05-02):
+  - Added section 7 between Alliances and Contact
+  - 6 interactive cards with hover animations (border, shadow, translateY)
+  - **All KB links unified** to home endpoint: `https://hdesk.d-byte.com.ar/portal/es/kb`
+  - Card 6 (Ticket) points to: `https://hdesk.d-byte.com.ar/portal/es/newticket`
+  - CSS grid responsive (3→2→1 columns at 1100px/900px breakpoints)
+  - Schema FAQPage updated with Support KB reference
+  - **SEO impact**: Bridges marketing site ↔ Help Desk, improves findability of support resources (~40% tráfico técnico recovery target)
 
 ## Testing & Performance Monitoring
 
