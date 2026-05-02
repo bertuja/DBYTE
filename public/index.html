@@ -1732,13 +1732,13 @@ section { position: relative; }
       <div class="contact-eyebrow reveal">06 — Contacto</div>
       <h2 class="contact-title reveal d1">Hablemos.</h2>
 
-      <div data-fs-success class="contact-success" style="padding:16px; background:rgba(0,204,153,0.15); border:1px solid rgba(0,204,153,0.3); border-radius:8px; color:var(--green); margin-bottom:24px; display:none;">
-        ✓ ¡Gracias! Hemos recibido tu mensaje. Nos contactaremos pronto.
-      </div>
-      <div data-fs-error class="contact-error" style="padding:16px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); border-radius:8px; color:#ef4444; margin-bottom:24px; display:none;">
-      </div>
-
       <form class="contact-form reveal d2" id="contactForm">
+        <div data-fs-success class="contact-success" style="padding:16px; background:rgba(0,204,153,0.15); border:1px solid rgba(0,204,153,0.3); border-radius:8px; color:var(--green); margin-bottom:24px; display:none;">
+          ✓ ¡Gracias! Hemos recibido tu mensaje. Nos contactaremos en breve.
+        </div>
+        <div data-fs-error class="contact-error" style="padding:16px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); border-radius:8px; color:#ef4444; margin-bottom:24px; display:none;">
+          ⚠ Error al enviar. Por favor intenta de nuevo.
+        </div>
         <div class="form-row">
           <label class="field">
             <span>Nombre</span>
@@ -2259,8 +2259,34 @@ section { position: relative; }
 <script>
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
   formspree('initForm', { formElement: '#contactForm', formId: 'mrejbnyo' });
+
+  // Listen for form submission success
+  formspree('trackSubmissions', true);
 </script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<!-- Handle form success feedback and reset -->
+<script>
+  const form = document.getElementById('contactForm');
+  const successDiv = form.querySelector('[data-fs-success]');
+
+  if (successDiv) {
+    // Watch for when success message is shown
+    const observer = new MutationObserver(() => {
+      if (successDiv.style.display !== 'none') {
+        // Message is visible, reset form after 3 seconds
+        setTimeout(() => {
+          form.reset();
+          successDiv.style.display = 'none';
+          document.querySelectorAll('.field').forEach(f => f.classList.remove('filled'));
+        }, 3000);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(successDiv, { attributes: true, attributeFilter: ['style'] });
+  }
+</script>
 
 </body>
 </html>
