@@ -2227,20 +2227,22 @@ section { position: relative; }
   const tokenField = document.getElementById('recaptchaToken');
   if (!form || !tokenField) return;
 
-  let isGeneratingToken = false;
+  let isProcessing = false;
 
   form.addEventListener('submit', (e) => {
-    // If token is empty and we're not already generating, generate it
-    if (!tokenField.value && !isGeneratingToken) {
+    // If we're already processing, let the form submit normally (Formspree will handle)
+    if (isProcessing) return;
+
+    // If token doesn't exist, generate it first
+    if (!tokenField.value) {
       e.preventDefault();
-      isGeneratingToken = true;
+      isProcessing = true;
 
       grecaptcha.ready(function() {
         grecaptcha.execute('6LeCzNUsAAAAAPK_F769ReDoPEgHVl_k3vFPeHcG', {action: 'submit'}).then(function(token) {
           tokenField.value = token;
-          isGeneratingToken = false;
-          // Now submit the form (it will have the token)
-          form.submit();
+          // Trigger submit event so Formspree can intercept it
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
         });
       });
     }
