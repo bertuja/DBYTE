@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBYTE | Webinar: IA para tu empresa</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background-color:#f0f2f0;font-family:'Roboto',Arial,sans-serif;">
+
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#f0f2f0;">¿Tu empresa ya usa inteligencia artificial? Fundamentos + casos reales. Webinar gratuito. 🤖</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f0f2f0;">
+<tr><td align="center" style="padding:28px 15px;">
+<table width="620" cellpadding="0" cellspacing="0" style="max-width:620px;width:100%;">
+
+  <!-- ══ HEADER ══ -->
+  <tr>
+    <td style="background:#fff;border-radius:12px 12px 0 0;padding:20px 32px 18px;border-bottom:3px solid #00CC99;">
+      <table width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="vertical-align:middle;">
+          <svg width="138" height="40" viewBox="0 0 138 40" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0,1)">
+              <path d="M5 2 L5 36 L17 36 Q32 36 32 19 Q32 2 17 2 Z M11 7 L16 7 Q25 7 25 19 Q25 31 16 31 L11 31 Z" fill="#00CC99"/>
+              <path d="M13 2 Q13 -0.8 16.5 -0.8 Q20 -0.8 20 2" fill="none" stroke="#35A8E0" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M13 2 L13 19 M13 2 Q24 2 24 10.5 Q24 19 13 19" fill="none" stroke="#35A8E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 19 Q27 19 27 27.5 Q27 36 13 36" fill="none" stroke="#35A8E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text x="40" y="27" font-family="'Montserrat',Arial,sans-serif" font-size="19" font-weight="800" fill="#00CC99" letter-spacing="1.5">DBYTE</text>
+            <line x1="37" y1="25" x2="125" y2="25" stroke="#35A8E0" stroke-width="1.2"/>
+          </svg>
+        </td>
+        <td align="right" style="vertical-align:middle;">
+          <span style="background:#00CC99;color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:20px;text-transform:uppercase;">WEBINAR GRATUITO</span>
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+  <tr><td style="height:3px;background:linear-gradient(90deg,#00CC99,#35A8E0);"></td></tr>
+
+  <!-- ══ HERO VISUAL: ESCENA OFICINA CON FOTOS REALES ══ -->
+  <tr>
+    <td style="background:#1a1e2e;padding:0;line-height:0;position:relative;overflow:hidden;">
+
+      <!-- SVG base de escena de oficina con fotos reales embebidas via foreignObject/image -->
+      <svg width="620" height="380" viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <!-- Clip circles para las fotos -->
+          <clipPath id="clipCircle1"><circle cx="120" cy="195" r="68"/></clipPath>
+          <clipPath id="clipCircle2"><circle cx="370" cy="190" r="72"/></clipPath>
+          <clipPath id="clipCircle3"><circle cx="530" cy="198" r="58"/></clipPath>
+          <clipPath id="clipRect1"><rect x="52" y="127" width="136" height="136" rx="68"/></clipPath>
+          <clipPath id="clipRect2"><rect x="298" y="118" width="144" height="144" rx="72"/></clipPath>
+          <clipPath id="clipRect3"><rect x="472" y="140" width="116" height="116" rx="58"/></clipPath>
+
+          <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d1520"/>
+            <stop offset="50%" stop-color="#111827"/>
+            <stop offset="100%" stop-color="#0a1220"/>
+          </linearGradient>
+          <linearGradient id="greenGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00CC99" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#35A8E0" stop-opacity="0.1"/>
+          </linearGradient>
+          <filter id="glow1">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="cardShadow">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.4"/>
+          </filter>
+          <filter id="ringGlow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Fondo oscuro estilo tech -->
+        <rect width="620" height="380" fill="url(#heroBg)"/>
+
+        <!-- Grid sutil de fondo -->
+        <g opacity="0.04" stroke="#00CC99" stroke-width="0.5">
+          <line x1="0" y1="40" x2="620" y2="40"/><line x1="0" y1="80" x2="620" y2="80"/>
+          <line x1="0" y1="120" x2="620" y2="120"/><line x1="0" y1="160" x2="620" y2="160"/>
+          <line x1="0" y1="200" x2="620" y2="200"/><line x1="0" y1="240" x2="620" y2="240"/>
+          <line x1="0" y1="280" x2="620" y2="280"/><line x1="0" y1="320" x2="620" y2="320"/>
+          <line x1="0" y1="360" x2="620" y2="360"/>
+          <line x1="60" y1="0" x2="60" y2="380"/><line x1="120" y1="0" x2="120" y2="380"/>
+          <line x1="180" y1="0" x2="180" y2="380"/><line x1="240" y1="0" x2="240" y2="380"/>
+          <line x1="300" y1="0" x2="300" y2="380"/><line x1="360" y1="0" x2="360" y2="380"/>
+          <line x1="420" y1="0" x2="420" y2="380"/><line x1="480" y1="0" x2="480" y2="380"/>
+          <line x1="540" y1="0" x2="540" y2="380"/><line x1="600" y1="0" x2="600" y2="380"/>
+        </g>
+
+        <!-- Partículas decorativas -->
+        <circle cx="30" cy="60" r="2" fill="#00CC99" opacity="0.5"/>
+        <circle cx="580" cy="40" r="1.5" fill="#35A8E0" opacity="0.4"/>
+        <circle cx="200" cy="30" r="1" fill="#00CC99" opacity="0.35"/>
+        <circle cx="450" cy="50" r="2" fill="#35A8E0" opacity="0.3"/>
+        <circle cx="600" cy="300" r="1.5" fill="#00CC99" opacity="0.4"/>
+        <circle cx="15" cy="350" r="1" fill="#35A8E0" opacity="0.3"/>
+
+        <!-- Líneas de conexión entre personas (red neuronal) -->
+        <line x1="188" y1="195" x2="298" y2="190" stroke="#00CC99" stroke-width="1" opacity="0.2" stroke-dasharray="4,4"/>
+        <line x1="442" y1="190" x2="472" y2="195" stroke="#35A8E0" stroke-width="1" opacity="0.2" stroke-dasharray="4,4"/>
+        <circle cx="243" cy="192" r="3" fill="#00CC99" opacity="0.4"/>
+        <circle cx="457" cy="192" r="3" fill="#35A8E0" opacity="0.4"/>
+
+        <!-- ══ PERSONA 1: MARIANA (mujer, sentada, computadora) ══ -->
+        <!-- Anillo exterior decorativo -->
+        <circle cx="120" cy="195" r="74" fill="none" stroke="#00CC99" stroke-width="1.5" opacity="0.5" filter="url(#ringGlow)"/>
+        <circle cx="120" cy="195" r="78" fill="none" stroke="#00CC99" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,5"/>
+        <!-- Foto real: mujer en laptop (Unsplash) -->
+        <image href="https://images.unsplash.com/photo-1673101075633-1732778c8da9?w=300&h=300&fit=crop&crop=faces&auto=format" 
+               x="52" y="127" width="136" height="136" 
+               clip-path="url(#clipRect1)" preserveAspectRatio="xMidYMid slice"/>
+        <!-- Overlay degradado en la foto -->
+        <circle cx="120" cy="195" r="68" fill="url(#greenGlow)"/>
+        <!-- Nombre tag -->
+        <rect x="75" y="275" width="90" height="24" rx="12" fill="#00CC99"/>
+        <text x="120" y="291" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="9" fill="#fff" font-weight="700">MARIANA · Admin</text>
+        <!-- Ícono de herramienta que usa -->
+        <rect x="88" y="300" width="64" height="18" rx="9" fill="#0d1a12" stroke="#00CC99" stroke-width="1" opacity="0.8"/>
+        <text x="120" y="313" text-anchor="middle" font-family="Arial" font-size="8" fill="#00CC99">💬 ChatGPT</text>
+
+        <!-- ══ PERSONA 2: CARLOS (hombre, de pie, sonriendo) ══ -->
+        <circle cx="370" cy="190" r="78" fill="none" stroke="#35A8E0" stroke-width="1.5" opacity="0.5" filter="url(#ringGlow)"/>
+        <circle cx="370" cy="190" r="83" fill="none" stroke="#35A8E0" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,5"/>
+        <!-- Foto real: hombre sonriendo camisa blanca (Unsplash) -->
+        <image href="https://images.unsplash.com/photo-1558203728-00f45181dd84?w=300&h=300&fit=crop&crop=faces&auto=format"
+               x="298" y="118" width="144" height="144"
+               clip-path="url(#clipRect2)" preserveAspectRatio="xMidYMid slice"/>
+        <circle cx="370" cy="190" r="72" fill="url(#greenGlow)"/>
+        <rect x="322" y="276" width="96" height="24" rx="12" fill="#35A8E0"/>
+        <text x="370" y="292" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="9" fill="#fff" font-weight="700">CARLOS · Gerente</text>
+        <rect x="334" y="304" width="72" height="18" rx="9" fill="#0d1220" stroke="#35A8E0" stroke-width="1" opacity="0.8"/>
+        <text x="370" y="317" text-anchor="middle" font-family="Arial" font-size="8" fill="#35A8E0">📊 Copilot</text>
+
+        <!-- ══ PERSONA 3: LUCÍA (mujer, con gafas, curiosa) ══ -->
+        <circle cx="530" cy="198" r="63" fill="none" stroke="#00CC99" stroke-width="1.5" opacity="0.4" filter="url(#ringGlow)"/>
+        <circle cx="530" cy="198" r="67" fill="none" stroke="#35A8E0" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,5"/>
+        <!-- Foto real: mujer con lentes laptop (Unsplash) -->
+        <image href="https://images.unsplash.com/photo-1771149977098-e9ebb0ea7136?w=280&h=280&fit=crop&crop=faces&auto=format"
+               x="472" y="140" width="116" height="116"
+               clip-path="url(#clipRect3)" preserveAspectRatio="xMidYMid slice"/>
+        <circle cx="530" cy="198" r="58" fill="url(#greenGlow)"/>
+        <rect x="488" y="270" width="84" height="24" rx="12" fill="#00CC99" opacity="0.85"/>
+        <text x="530" y="286" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="9" fill="#fff" font-weight="700">LUCÍA · IT</text>
+        <rect x="494" y="298" width="72" height="18" rx="9" fill="#0d1a12" stroke="#00CC99" stroke-width="1" opacity="0.8"/>
+        <text x="530" y="311" text-anchor="middle" font-family="Arial" font-size="8" fill="#00CC99">🤖 Claude AI</text>
+
+        <!-- ══ GLOBO DE PENSAMIENTO (Mariana, centro) ══ -->
+        <!-- Burbuja -->
+        <rect x="155" y="108" width="148" height="62" rx="10" fill="#fff" opacity="0.97" filter="url(#cardShadow)"/>
+        <rect x="155" y="108" width="148" height="62" rx="10" fill="none" stroke="#00CC99" stroke-width="1.5"/>
+        <!-- Puntito hacia Mariana -->
+        <circle cx="172" cy="173" r="4.5" fill="#fff" stroke="#00CC99" stroke-width="1.2"/>
+        <circle cx="163" cy="182" r="3" fill="#fff" stroke="#00CC99" stroke-width="1"/>
+        <circle cx="157" cy="190" r="2" fill="#fff" stroke="#00CC99" stroke-width="0.8"/>
+        <!-- Texto del pensamiento -->
+        <text x="229" y="128" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="8.5" fill="#111" font-weight="700">¿La IA puede</text>
+        <text x="229" y="141" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="8.5" fill="#111" font-weight="700">ayudar en mi empresa?</text>
+        <text x="229" y="158" text-anchor="middle" font-family="Arial" font-size="7" fill="#888" font-style="italic">La pregunta que todos tienen</text>
+
+        <!-- ══ BADGE "PYME" ══ -->
+        <rect x="246" y="320" width="128" height="34" rx="8" fill="#0d1a12" stroke="#00CC99" stroke-width="1.5" filter="url(#cardShadow)"/>
+        <text x="310" y="335" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="8" fill="#00CC99" font-weight="600" letter-spacing="1">TU PRÓXIMO EQUIPO</text>
+        <text x="310" y="348" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="9" fill="#fff" font-weight="700">de Inteligencia Artificial 🚀</text>
+
+        <!-- ══ TÍTULO HERO en el top ══ -->
+        <rect x="0" y="0" width="620" height="50" fill="url(#heroBg)" opacity="0.9"/>
+        <text x="310" y="18" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="9" fill="#35A8E0" font-weight="600" letter-spacing="3">WEBINAR GRATUITO · ONLINE</text>
+        <text x="310" y="38" text-anchor="middle" font-family="'Montserrat',Arial,sans-serif" font-size="18" fill="#ffffff" font-weight="800" letter-spacing="0.5">IA para PYMEs: del caos a la claridad</text>
+
+        <!-- Línea decorativa top -->
+        <line x1="0" y1="48" x2="620" y2="48" stroke="#00CC99" stroke-width="0.5" opacity="0.3"/>
+      </svg>
+
+    </td>
+  </tr>
+
+  <!-- ══ BANDA ══ -->
+  <tr><td style="height:3px;background:linear-gradient(90deg,#00CC99,#35A8E0);"></td></tr>
+
+  <!-- ══ TÍTULO PRINCIPAL ══ -->
+  <tr>
+    <td style="background:#fff;padding:30px 32px 8px;text-align:center;">
+      <p style="margin:0 0 6px;font-family:'Montserrat',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:#35A8E0;text-transform:uppercase;">Webinar Gratuito · Online · Cupos Limitados</p>
+      <h1 style="margin:0 0 10px;font-family:'Montserrat',Arial,sans-serif;font-size:31px;font-weight:800;color:#000;line-height:1.15;">
+        Inteligencia Artificial<br><span style="color:#00CC99;">para tu empresa.</span>
+      </h1>
+      <p style="margin:0 0 20px;font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#706f6f;line-height:1.7;">
+        Fundamentos claros + casos prácticos en PYMEs argentinas.<br>
+        Sin tecnicismos. Sin promesas vacías. Con resultados reales.
+      </p>
+    </td>
+  </tr>
+
+  <!-- FECHA BADGE -->
+  <tr>
+    <td style="background:#fff;padding:0 32px 30px;text-align:center;">
+      <table cellpadding="0" cellspacing="0" align="center">
+        <tr><td style="background:linear-gradient(90deg,#00CC99,#35A8E0);border-radius:10px;padding:2px;">
+          <div style="background:#fff;border-radius:8px;padding:13px 30px;text-align:center;">
+            <p style="margin:0 0 2px;font-family:'Montserrat',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;color:#35A8E0;text-transform:uppercase;">📅 Fecha por confirmar</p>
+            <p style="margin:0;font-family:'Montserrat',Arial,sans-serif;font-size:16px;font-weight:700;color:#000;">Reservá tu lugar ahora</p>
+          </div>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr><td style="height:3px;background:linear-gradient(90deg,#00CC99,#35A8E0);"></td></tr>
+
+  <!-- ══ CUERPO ══ -->
+  <tr>
+    <td style="background:#f8fffe;padding:34px 32px 26px;">
+      <p style="margin:0 0 14px;font-family:'Roboto',Arial,sans-serif;font-size:15px;color:#333;line-height:1.8;">Hola,</p>
+      <p style="margin:0 0 14px;font-family:'Roboto',Arial,sans-serif;font-size:15px;color:#333;line-height:1.8;">
+        En tu empresa ya hay personas que usan ChatGPT por su cuenta. Hay procesos que podrían automatizarse. Hay decisiones que se podrían tomar mejor con datos. Pero <strong style="color:#000;">nadie sabe bien por dónde empezar ni cómo hacerlo de forma ordenada.</strong>
+      </p>
+      <p style="margin:0 0 26px;font-family:'Roboto',Arial,sans-serif;font-size:15px;color:#333;line-height:1.8;">Este webinar es para eso.</p>
+
+      <!-- QUÉ VAS A APRENDER -->
+      <div style="background:#fff;border-left:4px solid #00CC99;border-radius:0 8px 8px 0;padding:20px 22px;margin-bottom:26px;box-shadow:0 2px 8px rgba(0,204,153,0.08);">
+        <p style="margin:0 0 12px;font-family:'Montserrat',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#00CC99;text-transform:uppercase;">📋 Qué vas a aprender</p>
+        <table cellpadding="0" cellspacing="0" width="100%">
+          <tr><td style="padding:5px 0;"><table cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;color:#00CC99;font-size:13px;vertical-align:top;padding-top:1px;">▸</td>
+            <td style="font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#333;line-height:1.5;"><strong style="color:#000;">Qué es realmente la IA</strong> y en qué se diferencia de un simple buscador</td>
+          </tr></table></td></tr>
+          <tr><td style="padding:5px 0;"><table cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;color:#00CC99;font-size:13px;vertical-align:top;padding-top:1px;">▸</td>
+            <td style="font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#333;line-height:1.5;"><strong style="color:#000;">Las herramientas del momento:</strong> ChatGPT, Copilot, Gemini, Claude — cuándo usar cada una</td>
+          </tr></table></td></tr>
+          <tr><td style="padding:5px 0;"><table cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;color:#00CC99;font-size:13px;vertical-align:top;padding-top:1px;">▸</td>
+            <td style="font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#333;line-height:1.5;"><strong style="color:#000;">Casos reales en PYMEs:</strong> administración, ventas, atención al cliente, logística</td>
+          </tr></table></td></tr>
+          <tr><td style="padding:5px 0;"><table cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;color:#00CC99;font-size:13px;vertical-align:top;padding-top:1px;">▸</td>
+            <td style="font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#333;line-height:1.5;"><strong style="color:#000;">3 automatizaciones simples</strong> que podés implementar esta semana, sin programar</td>
+          </tr></table></td></tr>
+          <tr><td style="padding:5px 0;"><table cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;color:#00CC99;font-size:13px;vertical-align:top;padding-top:1px;">▸</td>
+            <td style="font-family:'Roboto',Arial,sans-serif;font-size:14px;color:#333;line-height:1.5;"><strong style="color:#000;">Preguntas en vivo</strong> para aplicarlo a tu empresa puntual</td>
+          </tr></table></td></tr>
+        </table>
+      </div>
+
+      <!-- PARA QUIÉN ES -->
+      <p style="margin:0 0 10px;font-family:'Montserrat',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:#35A8E0;text-transform:uppercase;">¿Para quién es?</p>
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td width="50%" style="padding:0 5px 8px 0;vertical-align:top;">
+            <div style="background:#fff;border:1px solid #e0f5ef;border-top:3px solid #00CC99;border-radius:6px;padding:13px;">
+              <p style="margin:0 0 3px;font-size:17px;">👔</p>
+              <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:13px;color:#333;line-height:1.5;"><strong>Dueños y directivos</strong> que quieren entender el impacto real</p>
+            </div>
+          </td>
+          <td width="50%" style="padding:0 0 8px 5px;vertical-align:top;">
+            <div style="background:#fff;border:1px solid #e0eef5;border-top:3px solid #35A8E0;border-radius:6px;padding:13px;">
+              <p style="margin:0 0 3px;font-size:17px;">💼</p>
+              <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:13px;color:#333;line-height:1.5;"><strong>Administrativos y ventas</strong> que quieren ser más eficientes</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="50%" style="padding:0 5px 0 0;vertical-align:top;">
+            <div style="background:#fff;border:1px solid #e0f5ef;border-top:3px solid #00CC99;border-radius:6px;padding:13px;">
+              <p style="margin:0 0 3px;font-size:17px;">🔧</p>
+              <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:13px;color:#333;line-height:1.5;"><strong>Equipos de IT</strong> que necesitan guiar a sus clientes internos</p>
+            </div>
+          </td>
+          <td width="50%" style="padding:0 0 0 5px;vertical-align:top;">
+            <div style="background:#fff;border:1px solid #e0eef5;border-top:3px solid #35A8E0;border-radius:6px;padding:13px;">
+              <p style="margin:0 0 3px;font-size:17px;">🚀</p>
+              <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:13px;color:#333;line-height:1.5;"><strong>Cualquiera</strong> que no quiere quedarse afuera de la revolución IA</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ══ CTA ══ -->
+  <tr>
+    <td style="background:linear-gradient(135deg,#00CC99,#35A8E0);padding:34px;text-align:center;">
+      <p style="margin:0 0 4px;font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,255,255,0.8);text-transform:uppercase;">Gratuito · Online · Cupos limitados</p>
+      <h2 style="margin:0 0 18px;font-family:'Montserrat',Arial,sans-serif;font-size:23px;font-weight:800;color:#fff;line-height:1.2;">¿Reservás tu lugar?</h2>
+      <table cellpadding="0" cellspacing="0" align="center" style="margin-bottom:14px;">
+        <tr><td style="background:#000;border-radius:8px;padding:15px 42px;">
+          <a href="[LINK_INSCRIPCION]" style="font-family:'Montserrat',Arial,sans-serif;font-size:15px;font-weight:700;color:#00CC99;text-decoration:none;">👉 Inscribirme al webinar</a>
+        </td></tr>
+      </table>
+      <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.7);">O respondé este email. Te respondemos personalmente.</p>
+    </td>
+  </tr>
+
+  <!-- ══ LLM TAGS ══ -->
+  <tr>
+    <td style="background:#fff;padding:22px 32px;border-top:1px solid #eee;">
+      <p style="margin:0 0 12px;text-align:center;font-family:'Montserrat',Arial,sans-serif;font-size:9px;font-weight:600;letter-spacing:2px;color:#999;text-transform:uppercase;">Herramientas que vamos a explorar</p>
+      <table cellpadding="0" cellspacing="0" width="100%"><tr>
+        <td align="center"><div style="display:inline-block;background:#f5fdf9;border:1px solid #cceedd;border-radius:8px;padding:7px 11px;margin:0 3px;"><span style="font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:700;color:#10a37f;">ChatGPT</span></div></td>
+        <td align="center"><div style="display:inline-block;background:#fdfbf5;border:1px solid #ddcc88;border-radius:8px;padding:7px 11px;margin:0 3px;"><span style="font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:700;color:#c8960a;">Claude</span></div></td>
+        <td align="center"><div style="display:inline-block;background:#f5f8ff;border:1px solid #bbccff;border-radius:8px;padding:7px 11px;margin:0 3px;"><span style="font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:700;color:#4285f4;">Gemini</span></div></td>
+        <td align="center"><div style="display:inline-block;background:#f5f8ff;border:1px solid #aabbff;border-radius:8px;padding:7px 11px;margin:0 3px;"><span style="font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:700;color:#0078d4;">Copilot</span></div></td>
+        <td align="center"><div style="display:inline-block;background:#fff5f7;border:1px solid #ffaabb;border-radius:8px;padding:7px 11px;margin:0 3px;"><span style="font-family:'Montserrat',Arial,sans-serif;font-size:11px;font-weight:700;color:#ea4b71;">n8n</span></div></td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <!-- ══ QUOTE ══ -->
+  <tr>
+    <td style="background:#f8fffe;padding:26px 32px;border-top:1px solid #e0f5ef;">
+      <div style="border-left:4px solid #35A8E0;padding-left:18px;">
+        <p style="margin:0 0 6px;font-family:'Montserrat',Arial,sans-serif;font-size:15px;font-weight:300;color:#333;font-style:italic;line-height:1.6;">"Las empresas que integran IA no reemplazan personas. <strong style="color:#00CC99;font-weight:700;">Liberan a su equipo para hacer lo que importa."</strong></p>
+        <p style="margin:0;font-family:'Roboto',Arial,sans-serif;font-size:11px;color:#999;letter-spacing:0.5px;">— DBYTE · Infraestructura & Tecnología</p>
+      </div>
+    </td>
+  </tr>
+
+  <!-- ══ FOOTER ══ -->
+  <tr>
+    <td style="background:#000;border-radius:0 0 12px 12px;padding:22px 32px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="vertical-align:top;">
+            <svg width="110" height="34" viewBox="0 0 110 34" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(0,1)">
+                <path d="M4 1 L4 30 L13 30 Q24 30 24 15.5 Q24 1 13 1 Z M8 5 L12 5 Q19 5 19 15.5 Q19 26 12 26 L8 26 Z" fill="#00CC99"/>
+                <path d="M10 1 Q10 -0.5 13 -0.5 Q16 -0.5 16 1" fill="none" stroke="#35A8E0" stroke-width="1.1" stroke-linecap="round"/>
+                <path d="M10 1 L10 15.5 M10 1 Q19 1 19 8.5 Q19 15.5 10 15.5" fill="none" stroke="#35A8E0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 15.5 Q21 15.5 21 23 Q21 30 10 30" fill="none" stroke="#35A8E0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <text x="30" y="22" font-family="'Montserrat',Arial,sans-serif" font-size="15" font-weight="800" fill="#00CC99" letter-spacing="1">DBYTE</text>
+              <line x1="28" y1="20" x2="98" y2="20" stroke="#35A8E0" stroke-width="1"/>
+            </svg>
+            <p style="margin:3px 0 0;font-family:'Roboto',Arial,sans-serif;font-size:10px;color:#555;">d-byte.com.ar · Infraestructura & Tecnología</p>
+          </td>
+          <td align="right" style="vertical-align:top;">
+            <a href="[LINK_UNSUB]" style="font-family:'Roboto',Arial,sans-serif;font-size:10px;color:#444;text-decoration:none;">Desuscribirse</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-top:12px;border-top:1px solid #1a1a1a;">
+            <p style="margin:8px 0 0;font-family:'Roboto',Arial,sans-serif;font-size:10px;color:#444;line-height:1.6;">
+              Estás recibiendo este email porque sos cliente o contacto de DBYTE.<br>
+              Fotos: Unsplash (licencia gratuita). © 2025 DBYTE · Todos los derechos reservados
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

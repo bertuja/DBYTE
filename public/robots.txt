@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.vercel/
+
+Sitemap: https://www.d-byte.com.ar/sitemap.xml
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: GPTBot
+Allow: /
