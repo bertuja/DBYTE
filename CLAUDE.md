@@ -23,11 +23,12 @@ public/
     ├── iso-gradient-blanca.webp  # Brand logo (WebP, 57% smaller)
     └── iso-original.png          # Brand logo (original, unused)
 
-vercel.json            # Vercel config (outputDirectory: public)
-CLAUDE.md              # This guidance document
+vercel.json              # Vercel config (output dir, cache headers, 301 redirects)
+SEO_SETUP_GUIDE.md       # Step-by-step guide for Google Search Console + Business Profile
+CLAUDE.md                # This guidance document
 ```
 
-**Note:** Last updated 2026-05-02 (Phase 2 Performance optimizations: LCP fix, resource hints, WebP images, CSS/JS minification; SEO setup guide + Google Business Profile checklist provided)
+**Note:** Last updated 2026-05-02 (Phase 2 Performance optimizations: LCP fix, resource hints, WebP images, CSS/JS minification; 301 redirects for old URLs; SEO setup guide + Business Profile checklist provided)
 
 ## Website Architecture
 
@@ -249,12 +250,22 @@ No automatic GitHub→Vercel sync is configured; deploy must be manual.
 - **sitemap.xml**: Lists 5 main pages/sections (home, hero, nosotros, servicios, contacto)
 - **robots.txt**: Allows all crawlers, disallows admin paths, points to sitemap
 
-**Next SEO steps** (not yet implemented):
-- Submit sitemap.xml to Google Search Console (https://search.google.com/search-console)
-- Complete Google Business Profile (https://business.google.com)
-- Add structured data testing in Google's Rich Results Test
-- Monitor Core Web Vitals in Search Console
-- Build backlinks from industry directories and Argentine tech sites
+**URL Reindexing Strategy** (2026-05-02):
+- Old site had multiple pages; new site is single-page
+- 301 redirects configured in `vercel.json` (see above)
+- Google automatically reindexes over 1-4 weeks
+- URL Inspection in GSC already requested (user submitted via Google dashboard)
+- Old snippets will update automatically; no further action needed from code
+
+**Next SEO steps** (manual user actions):
+- **See `SEO_SETUP_GUIDE.md`** — Complete step-by-step guide for:
+  - Google Search Console setup (verify property, submit sitemap)
+  - Google Business Profile creation/verification
+  - Rich Results testing
+  - Monitoring Core Web Vitals
+- Once GSC is set up: monitor **Coverage** tab to confirm redirects are processed
+- Monitor **Performance** tab to see search impressions & click-through rates (1-2 weeks to populate)
+- Optional: Build backlinks from industry directories and Argentine tech sites
 
 ## Third-Party Integrations
 
@@ -287,18 +298,35 @@ All integrations are configured in `public/index.html` via CDN or JavaScript API
 
 ## Vercel Configuration (vercel.json)
 
-**Current configuration**:
+**Current configuration** includes:
+- **Output directory**: `public/`
+- **Redirects**: 301 permanent redirects for old site URLs (see below)
+- **Cache headers**: Static assets 1yr, HTML 1hr, metadata 1day
+- **No build command**: Static files only, no compilation needed
+
+**Redirects (301 Permanent)** — Old site URLs automatically redirect to homepage:
 ```json
 {
-  "outputDirectory": "public",
-  "headers": [
-    { "source": "/assets/(.*)", "Cache-Control": "public, max-age=31536000, immutable" },
-    { "source": "/sitemap.xml", "Cache-Control": "public, max-age=86400" },
-    { "source": "/robots.txt", "Cache-Control": "public, max-age=86400" },
-    { "source": "/index.html", "Cache-Control": "public, max-age=3600, must-revalidate" }
+  "redirects": [
+    { "source": "/servicios", "destination": "/", "permanent": true },
+    { "source": "/servicios/:path*", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/productos", "destination": "/", "permanent": true },
+    { "source": "/productos/:path*", "destination": "/", "permanent": true },
+    { "source": "/aboutus", "destination": "/", "permanent": true },
+    { "source": "/team", "destination": "/", "permanent": true },
+    { "source": "/novedades/:path*", "destination": "/", "permanent": true },
+    { "source": "/:path*.html", "destination": "/", "permanent": true }
   ]
 }
 ```
+
+**Why these redirects?**
+- Old site (d-byte.com, old structure) had multiple pages: `/servicios`, `/productos`, `/team`, etc.
+- New site is single-page (`/`) — all content is on the homepage
+- 301 redirects tell Google: "This old URL permanently moved here" → preserves SEO authority
+- Google automatically reindexes and updates search results over 1-4 weeks
+- Users landing on old links are seamlessly directed to the new home
 
 **Cache strategy explained**:
 - **Static assets** (`/assets/*`, images, fonts): 1 year immutable
@@ -348,7 +376,13 @@ All integrations are configured in `public/index.html` via CDN or JavaScript API
   - **WebP Conversion**: Logo PNG 102KB → WebP 44KB (57% savings) with `<picture>` fallback
   - **CSS/JS Minification**: CSS 21% reduction, total file size 75.3KB → 68.4KB (9%)
   - **Expected improvements**: LCP +200-400ms faster, FID +30-50ms faster, zero CLS impact
-- ✅ **SEO Setup Guide**: Comprehensive guide for Google Search Console + Business Profile (external manual setup)
+- ✅ **SEO Setup Guide** (2026-05-02): Comprehensive guide for Google Search Console + Business Profile setup (external manual setup documented in `SEO_SETUP_GUIDE.md`)
+- ✅ **301 Redirects for Old Site URLs** (2026-05-02): 
+  - Configured in `vercel.json`
+  - Redirects: `/servicios`, `/productos`, `/team`, `/aboutus`, `/novedades/*`, `*.html` → all point to `/`
+  - Permanent (HTTP 301), so Google automatically reindexes
+  - User submitted URL for reindexing via Google Search Console
+  - Timeline: Old snippets/URLs will update in Google's index over 1-4 weeks
 
 ## Testing & Performance Monitoring
 
@@ -365,26 +399,46 @@ https://search.google.com/test/rich-results?url=www.d-byte.com.ar
 ```
 
 **Performance benchmarks** (as of 2026-05-02):
-- **Before Phase 2**: LCP ~2.1s, FID ~25ms, CLS ~0.05, File size ~76KB HTML
-- **After Phase 2**: LCP expected ~1.7-1.9s, FID expected ~15-20ms, CLS ~0.05, File size ~68KB HTML (9% reduction)
-- **Assets**: Logo PNG 102KB, WebP 44KB (57% savings), other images on CDN
-- **All metrics**: Exceed targets (LCP < 2.5s, FID < 100ms, CLS < 0.1) ✅
+
+*Before Phase 2 optimizations:*
+- LCP: ~2.1s, FID: ~25ms, CLS: ~0.05, File size: ~76KB HTML
+
+*After Phase 2 optimizations (expected):*
+- LCP: ~1.7-1.9s (200-400ms faster)
+- FID: ~15-20ms (30-50ms faster)
+- CLS: ~0.05 (unchanged)
+- File size: ~68KB HTML (9% reduction via minification)
+- Assets: Logo PNG 102KB → WebP 44KB (57% savings)
+
+*Target benchmarks (Google Core Web Vitals):*
+- LCP < 2.5s ✅ (currently 1.7-2.1s)
+- FID < 100ms ✅ (currently 15-25ms)
+- CLS < 0.1 ✅ (currently ~0.05)
 
 **What to monitor**:
-- Run PageSpeed Insights monthly to catch regressions
-- Check Core Web Vitals in Google Analytics 4 (auto-tracked)
-- Monitor in Google Search Console (once linked)
+- Run [PageSpeed Insights](https://pagespeed.web.dev/?url=https%3A%2F%2Fwww.d-byte.com.ar) every 2 weeks to verify Phase 2 improvements
+- Check Core Web Vitals in Google Analytics 4 (auto-tracked real user data, populates in 1-2 weeks)
+- Monitor in Google Search Console (once linked) for crawl errors, indexation, performance trends
 - Test on real mobile devices occasionally (not just Lighthouse)
+- Check for any regressions after content updates
 
 ## Known Limitations & Future Improvements
 
 1. **Terminal scenarios are hardcoded** — New services require manual JavaScript array update in SCENARIOS (around line ~1953). Could refactor into data attributes or JSON file for dynamic loading.
+
 2. **Mobile terminal** — Terminal simulation is hidden on mobile (CSS `display: none` at 600px); could be redesigned for smaller screens or replaced with static info.
+
 3. **No blog/content system** — Site is static single-page; adding case studies or blog posts would require either:
    - Dynamic HTML generation from JSON (JavaScript-based)
    - External CMS integration (Strapi, Sanity, etc.)
+
 4. **Sitemap is manual** — sitemap.xml updated by hand; if adding new major sections, remember to update it and deploy
+
 5. **CSS/JS line numbers drift** — Selectors are stable, but line numbers change; refer to section headers instead when referencing code
-6. **Google Search Console / Business Profile** — Setup guide provided in `SEO_SETUP_GUIDE.md`; next step is manual user configuration (external to code)
-   - See `SEO_SETUP_GUIDE.md` for step-by-step instructions
-   - Requires: GSC HTML meta verification tag, Business Profile creation/verification
+
+6. **Google Search Console / Business Profile** — Setup required by user
+   - ✅ Comprehensive guide provided in `SEO_SETUP_GUIDE.md`
+   - 📋 Next step: User manually configures GSC + Business Profile (external, not code)
+   - 🔄 301 redirects already deployed; will work automatically when GSC is configured
+
+7. **WebP support in older browsers** — Fallback to PNG via `<picture>` element (all 3 logo instances have WebP + PNG fallback)
