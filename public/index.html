@@ -1001,7 +1001,7 @@
 })();
 
 /* ============================================================
-   4b. Stats counter animation (infinite loop counter)
+   4b. Stats counter animation (pause on final value)
    ============================================================ */
 (function () {
   const statNums = document.querySelectorAll('.stat-num[data-final]');
@@ -1009,20 +1009,46 @@
 
   statNums.forEach((el) => {
     const finalValue = parseInt(el.getAttribute('data-final'));
-    const duration = 2000;
+    const animDuration = 2000;
+    const pauseDuration = 5000;
     const fps = 60;
-    const totalFrames = Math.ceil((duration / 1000) * fps);
+    const totalAnimFrames = Math.ceil((animDuration / 1000) * fps);
     let currentFrame = 0;
+    let isPaused = false;
+    let pauseStart = 0;
 
     const animate = () => {
-      currentFrame = (currentFrame + 1) % totalFrames;
-      const progress = currentFrame / totalFrames;
-      const easeProgress = progress < 0.5
-        ? 2 * progress * progress
-        : -1 + (4 - 2 * progress) * progress;
+      const now = Date.now();
 
-      const currentValue = Math.round(finalValue * easeProgress);
-      el.textContent = currentValue + '+';
+      if (isPaused) {
+        const elapsed = now - pauseStart;
+        if (elapsed >= pauseDuration) {
+          isPaused = false;
+          currentFrame = 0;
+        } else {
+          el.textContent = finalValue + '+';
+          requestAnimationFrame(animate);
+          return;
+        }
+      }
+
+      if (!isPaused) {
+        const progress = currentFrame / totalAnimFrames;
+        const easeProgress = progress < 0.5
+          ? 2 * progress * progress
+          : -1 + (4 - 2 * progress) * progress;
+
+        const currentValue = Math.round(finalValue * easeProgress);
+        el.textContent = currentValue + '+';
+
+        currentFrame++;
+
+        if (currentFrame > totalAnimFrames) {
+          isPaused = true;
+          pauseStart = now;
+          el.textContent = finalValue + '+';
+        }
+      }
 
       requestAnimationFrame(animate);
     };
