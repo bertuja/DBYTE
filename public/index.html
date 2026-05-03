@@ -230,15 +230,15 @@
   </div>
   <div class="about-stats">
     <div class="reveal d1">
-      <div class="stat-num">19</div>
+      <div class="stat-num" data-final="19">0+</div>
       <div class="stat-label">Años acompañando empresas</div>
     </div>
     <div class="reveal d2">
-      <div class="stat-num">300</div>
+      <div class="stat-num" data-final="300">0+</div>
       <div class="stat-label">Clientes desde 2007</div>
     </div>
     <div class="reveal d3">
-      <div class="stat-num">5000</div>
+      <div class="stat-num" data-final="5000">0+</div>
       <div class="stat-label">Implementaciones realizadas</div>
     </div>
   </div>
@@ -1001,50 +1001,34 @@
 })();
 
 /* ============================================================
-   4b. Stats counter animation (counts from 0 to final value)
+   4b. Stats counter animation (infinite loop counter)
    ============================================================ */
 (function () {
-  const statNums = document.querySelectorAll('.stat-num');
+  const statNums = document.querySelectorAll('.stat-num[data-final]');
   if (!statNums.length) return;
 
-  let animated = false;
+  statNums.forEach((el) => {
+    const finalValue = parseInt(el.getAttribute('data-final'));
+    const duration = 2000;
+    const fps = 60;
+    const totalFrames = Math.ceil((duration / 1000) * fps);
+    let currentFrame = 0;
 
-  const animateCounters = () => {
-    statNums.forEach((el) => {
-      if (animated || el.classList.contains('counting')) return;
+    const animate = () => {
+      currentFrame = (currentFrame + 1) % totalFrames;
+      const progress = currentFrame / totalFrames;
+      const easeProgress = progress < 0.5
+        ? 2 * progress * progress
+        : -1 + (4 - 2 * progress) * progress;
 
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        animated = true;
-        const finalValue = parseInt(el.textContent);
-        const duration = 1200;
-        const fps = 60;
-        const frames = Math.ceil((duration / 1000) * fps);
-        let currentFrame = 0;
+      const currentValue = Math.round(finalValue * easeProgress);
+      el.textContent = currentValue + '+';
 
-        el.classList.add('counting');
+      requestAnimationFrame(animate);
+    };
 
-        const interval = setInterval(() => {
-          currentFrame++;
-          const progress = currentFrame / frames;
-          const easeProgress = progress < 0.5
-            ? 2 * progress * progress
-            : -1 + (4 - 2 * progress) * progress;
-          const currentValue = Math.round(finalValue * easeProgress);
-
-          if (currentValue >= finalValue || currentFrame >= frames) {
-            el.textContent = finalValue;
-            clearInterval(interval);
-          } else {
-            el.textContent = currentValue;
-          }
-        }, 1000 / fps);
-      }
-    });
-  };
-
-  window.addEventListener('scroll', animateCounters, { passive: true });
-  animateCounters();
+    animate();
+  });
 })();
 
 /* ============================================================
